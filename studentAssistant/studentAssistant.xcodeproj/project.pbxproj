@@ -191,6 +191,7 @@
 		3FF9D3AD1A6CF19100DD5D38 /* studentAssistant */ = {
 			isa = PBXGroup;
 			children = (
+				3FF9D6331A6D023500DD5D38 /* section */,
 				3FF9D6311A6D012C00DD5D38 /* Macro */,
 				3FF9D4FE1A6D007300DD5D38 /* Resources */,
 				3FF9D4F11A6CFE1A00DD5D38 /* venator */,
@@ -389,6 +390,45 @@
 				3FF9D6321A6D012C00DD5D38 /* defineSetting.h */,
 			);
 			path = Macro;
+			sourceTree = "<group>";
+		};
+		3FF9D6331A6D023500DD5D38 /* section */ = {
+			isa = PBXGroup;
+			children = (
+				3FF9D6341A6D023500DD5D38 /* 个人信息 */,
+				3FF9D6351A6D023500DD5D38 /* 动态消息 */,
+				3FF9D6361A6D023500DD5D38 /* 学习 */,
+				3FF9D6371A6D023500DD5D38 /* 校内聊 */,
+			);
+			path = section;
+			sourceTree = "<group>";
+		};
+		3FF9D6341A6D023500DD5D38 /* 个人信息 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "个人信息";
+			sourceTree = "<group>";
+		};
+		3FF9D6351A6D023500DD5D38 /* 动态消息 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "动态消息";
+			sourceTree = "<group>";
+		};
+		3FF9D6361A6D023500DD5D38 /* 学习 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "学习";
+			sourceTree = "<group>";
+		};
+		3FF9D6371A6D023500DD5D38 /* 校内聊 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "校内聊";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
