@@ -14,6 +14,10 @@
 		3FF9D3BC1A6CF19100DD5D38 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FF9D3BB1A6CF19100DD5D38 /* Images.xcassets */; };
 		3FF9D3BF1A6CF19100DD5D38 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FF9D3BD1A6CF19100DD5D38 /* LaunchScreen.xib */; };
 		3FF9D3CB1A6CF19100DD5D38 /* studentAssistantTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9D3CA1A6CF19100DD5D38 /* studentAssistantTests.m */; };
+		3FF9D4FA1A6CFE1A00DD5D38 /* remind_noimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FF9D4F31A6CFE1A00DD5D38 /* remind_noimage.png */; };
+		3FF9D4FB1A6CFE1A00DD5D38 /* remind_noimage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FF9D4F41A6CFE1A00DD5D38 /* remind_noimage@2x.png */; };
+		3FF9D4FC1A6CFE1A00DD5D38 /* THProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9D4F71A6CFE1A00DD5D38 /* THProgressView.m */; };
+		3FF9D4FD1A6CFE1A00DD5D38 /* UIImageView+LK.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9D4F91A6CFE1A00DD5D38 /* UIImageView+LK.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +44,12 @@
 		3FF9D3C41A6CF19100DD5D38 /* studentAssistantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = studentAssistantTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FF9D3C91A6CF19100DD5D38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FF9D3CA1A6CF19100DD5D38 /* studentAssistantTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = studentAssistantTests.m; sourceTree = "<group>"; };
+		3FF9D4F31A6CFE1A00DD5D38 /* remind_noimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remind_noimage.png; sourceTree = "<group>"; };
+		3FF9D4F41A6CFE1A00DD5D38 /* remind_noimage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "remind_noimage@2x.png"; sourceTree = "<group>"; };
+		3FF9D4F61A6CFE1A00DD5D38 /* THProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THProgressView.h; sourceTree = "<group>"; };
+		3FF9D4F71A6CFE1A00DD5D38 /* THProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProgressView.m; sourceTree = "<group>"; };
+		3FF9D4F81A6CFE1A00DD5D38 /* UIImageView+LK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LK.h"; sourceTree = "<group>"; };
+		3FF9D4F91A6CFE1A00DD5D38 /* UIImageView+LK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LK.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +91,7 @@
 		3FF9D3AD1A6CF19100DD5D38 /* studentAssistant */ = {
 			isa = PBXGroup;
 			children = (
+				3FF9D4F11A6CFE1A00DD5D38 /* venator */,
 				3FF9D3B21A6CF19100DD5D38 /* AppDelegate.h */,
 				3FF9D3B31A6CF19100DD5D38 /* AppDelegate.m */,
 				3FF9D3B51A6CF19100DD5D38 /* ViewController.h */,
@@ -117,6 +128,35 @@
 				3FF9D3C91A6CF19100DD5D38 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3FF9D4F11A6CFE1A00DD5D38 /* venator */ = {
+			isa = PBXGroup;
+			children = (
+				3FF9D4F21A6CFE1A00DD5D38 /* SDWebImage-Category */,
+			);
+			path = venator;
+			sourceTree = "<group>";
+		};
+		3FF9D4F21A6CFE1A00DD5D38 /* SDWebImage-Category */ = {
+			isa = PBXGroup;
+			children = (
+				3FF9D4F31A6CFE1A00DD5D38 /* remind_noimage.png */,
+				3FF9D4F41A6CFE1A00DD5D38 /* remind_noimage@2x.png */,
+				3FF9D4F51A6CFE1A00DD5D38 /* THProgressView */,
+				3FF9D4F81A6CFE1A00DD5D38 /* UIImageView+LK.h */,
+				3FF9D4F91A6CFE1A00DD5D38 /* UIImageView+LK.m */,
+			);
+			path = "SDWebImage-Category";
+			sourceTree = "<group>";
+		};
+		3FF9D4F51A6CFE1A00DD5D38 /* THProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				3FF9D4F61A6CFE1A00DD5D38 /* THProgressView.h */,
+				3FF9D4F71A6CFE1A00DD5D38 /* THProgressView.m */,
+			);
+			path = THProgressView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,9 +239,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FF9D4FB1A6CFE1A00DD5D38 /* remind_noimage@2x.png in Resources */,
 				3FF9D3BA1A6CF19100DD5D38 /* Main.storyboard in Resources */,
 				3FF9D3BF1A6CF19100DD5D38 /* LaunchScreen.xib in Resources */,
 				3FF9D3BC1A6CF19100DD5D38 /* Images.xcassets in Resources */,
+				3FF9D4FA1A6CFE1A00DD5D38 /* remind_noimage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,9 +261,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FF9D4FD1A6CFE1A00DD5D38 /* UIImageView+LK.m in Sources */,
 				3FF9D3B71A6CF19100DD5D38 /* ViewController.m in Sources */,
 				3FF9D3B41A6CF19100DD5D38 /* AppDelegate.m in Sources */,
 				3FF9D3B11A6CF19100DD5D38 /* main.m in Sources */,
+				3FF9D4FC1A6CFE1A00DD5D38 /* THProgressView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +458,7 @@
 				3FF9D3D01A6CF19100DD5D38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3FF9D3D11A6CF19100DD5D38 /* Build configuration list for PBXNativeTarget "studentAssistantTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +467,7 @@
 				3FF9D3D31A6CF19100DD5D38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
