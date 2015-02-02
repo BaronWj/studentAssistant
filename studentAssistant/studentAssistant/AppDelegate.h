@@ -7,11 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LeveyTabBarController.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@class LeveyTabBarController;
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate>{
+    LeveyTabBarController *leveyTabBarController;
+}
 
 @property (strong, nonatomic) UIWindow *window;
-
-
+@property (nonatomic, retain) LeveyTabBarController *leveyTabBarController;
+@property (strong, nonatomic) NSString * requestUrl;
+@property (strong, nonatomic) AppDelegate * appdelegate;
 @end
 

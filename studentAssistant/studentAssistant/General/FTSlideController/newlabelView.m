@@ -43,6 +43,7 @@ static NSString * const reuseIdentifier = @"Cell";
                                     bundle: [NSBundle mainBundle]];
         [custom_collectionView registerNib:nib forCellWithReuseIdentifier:reuseIdentifier];
         _iteamArray = @[@"新闻详情",@"社团资讯",@"通知",@"党办"];
+        
     }
     return self;
 }

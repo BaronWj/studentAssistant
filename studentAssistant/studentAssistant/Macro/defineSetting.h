@@ -19,7 +19,19 @@
 #define RGB(r,g,b)          RGBA(r,g,b,1.0f)
 // RGB（hexadecimal->decimal）
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define iPhoneDelegate    ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
+/**
+ * userAndPassWord
+ */
+#define USERANDPWED  @"USERANDPWD"
+
+#define FIRSTLODINSTATE @"FIRSTLODINSTATE"
+//定义返回请求数据的block类型
+typedef void (^ReturnValueBlock) (id returnValue);
+typedef void (^ErrorCodeBlock) (id errorCode);
+typedef void (^FailureBlock)();
+typedef void (^NetWorkBlock)(BOOL netConnetState);
 
 /**
  *  Device
@@ -113,8 +125,9 @@
 #define ALERT(msg) [[[UIAlertView alloc] initWithTitle:nil message:msg delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show]
 
 //背景颜色
-#define backGround UIColorFromRGB(0x19565d)
-
+#define backGround UIColorFromRGB(0xFFFFFF)
+#define nav_backGround UIColorFromRGB(0x84b73e)
+#define labelTextColor UIColorFromRGB(0x5b5b5b)
 //课表
 #define kWidth 60
 #define kHeight 25

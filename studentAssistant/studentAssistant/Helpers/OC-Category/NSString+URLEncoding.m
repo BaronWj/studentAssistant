@@ -7,6 +7,7 @@
 //
 
 #import "NSString+URLEncoding.h"
+#import "AppDelegate.h"
 
 @implementation NSString(URLEncoding)
 - (NSString *)urlEncodeString
@@ -18,5 +19,10 @@
                 kCFStringEncodingUTF8));
     return result ;
 
+}
+
++(NSString *)string_connctUrl:(NSString *)str{
+    NSString * str_url = [iPhoneDelegate.requestUrl stringByAppendingString:str];
+    return str_url;
 }
 @end

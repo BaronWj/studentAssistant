@@ -76,6 +76,7 @@ static LeveyTabBarController *leveyTabBarController;
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+    
 //	
 //   if (!IOS_VERSION_7_OR_ABOVE) {
 //       [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navBackImage"] forBarMetrics:UIBarMetricsDefault];

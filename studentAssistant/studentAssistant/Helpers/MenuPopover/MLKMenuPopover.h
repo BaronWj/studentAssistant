@@ -21,7 +21,7 @@
 
 @property(nonatomic,assign) id<MLKMenuPopoverDelegate> menuPopoverDelegate;
 
-- (id)initWithFrame:(CGRect)frame menuItems:(NSArray *)menuItems;
+- (id)initWithFrame:(CGRect)frame menuItems:(NSArray *)aMenuItems withTitleImage:(NSArray *)Images;
 - (void)showInView:(UIView *)view;
 - (void)dismissMenuPopover;
 - (void)layoutUIForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;

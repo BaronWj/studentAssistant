@@ -11,12 +11,13 @@
 @implementation UITableViewCell (tableViewCell)
 - (void)tableViewCellBackbround
 {
-    self.backgroundColor = UIColorFromRGB(0x21555c);
+    self.backgroundColor = [UIColor whiteColor];
+    self.textLabel.textColor = labelTextColor;
     self.textLabel.backgroundColor = [UIColor clearColor];
     self.detailTextLabel.backgroundColor = [UIColor clearColor];
     
     UIView * view = [[UIView alloc]initWithFrame:self.frame];
-    view.backgroundColor = UIColorFromRGB(0x13494f);
+    view.backgroundColor = UIColorFromRGB(0xf9f9f9);
     self.selectedBackgroundView = view;
 }
 

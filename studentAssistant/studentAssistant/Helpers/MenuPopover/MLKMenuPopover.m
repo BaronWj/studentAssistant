@@ -8,7 +8,7 @@
 #import "MLKMenuPopover.h"
 #import <QuartzCore/QuartzCore.h>
 #import "defineSetting.h"
-#define RGBA(a, b, c, d) [UIColor colorWithRed:(a / 255.0f) green:(b / 255.0f) blue:(c / 255.0f) alpha:d]
+//#define RGBA(a, b, c, d) [UIColor colorWithRed:(a / 255.0f) green:(b / 255.0f) blue:(c / 255.0f) alpha:d]
 
 #define MENU_ITEM_HEIGHT        44
 #define FONT_SIZE               15
@@ -28,12 +28,13 @@
 
 #define LANDSCAPE_WIDTH_PADDING 50
 
+#import "UITableViewCell+tableViewCell.h"
 @interface MLKMenuPopover ()
 
 
 @property(nonatomic,retain) NSArray *menuItems;
 @property(nonatomic,retain) UIButton *containerButton;
-
+@property(nonatomic,retain) NSArray * images_array;
 - (void)hide;
 - (void)addSeparatorImageToCell:(UITableViewCell *)cell;
 
@@ -45,13 +46,14 @@
 @synthesize menuItems;
 @synthesize containerButton;
 
-- (id)initWithFrame:(CGRect)frame menuItems:(NSArray *)aMenuItems
+- (id)initWithFrame:(CGRect)frame menuItems:(NSArray *)aMenuItems withTitleImage:(NSArray *)Images
 {
     self = [super initWithFrame:frame];
     
     if (self)
     {
         self.menuItems = aMenuItems;
+        self.images_array = Images;
         
         // Adding Container Button which will take care of hiding menu when user taps outside of menu area
         self.containerButton = [[UIButton alloc] init];
@@ -64,16 +66,24 @@
         menuPointerView.image = [UIImage imageNamed:@"options_pointer"];
         menuPointerView.tag = MENU_POINTER_TAG;
         [self.containerButton addSubview:menuPointerView];
+////        [menuPointerView.layer setMasksToBounds:YES];
+////        [menuPointerView.layer setCornerRadius:5];
+//        [menuPointerView.layer setBorderWidth:0.5];
+//        [menuPointerView.layer setBorderColor:[UIColor whiteColor].CGColor];
         
         // Adding menu Items table
         UITableView *menuItemsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 11, frame.size.width, frame.size.height)];
-        
         menuItemsTableView.dataSource = self;
         menuItemsTableView.delegate = self;
         menuItemsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         menuItemsTableView.scrollEnabled = NO;
         menuItemsTableView.backgroundColor = [UIColor clearColor];
         menuItemsTableView.tag = MENU_TABLE_VIEW_TAG;
+        [menuItemsTableView.layer setMasksToBounds:YES];
+        [menuItemsTableView.layer setCornerRadius:5];
+//        [menuItemsTableView.layer setBorderWidth:0.5];
+//        [menuItemsTableView.layer setBorderColor:[UIColor whiteColor].CGColor];
+
         
         UIImageView *bgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Menu_PopOver_BG"]];
         menuItemsTableView.backgroundView = bgView;
@@ -108,10 +118,13 @@
     if (cell == nil)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+//        @"Vector-Smart-Object"
+        cell.imageView.image = [UIImage imageNamed:[_images_array objectAtIndex:indexPath.row]];
+        cell.imageView.frame = CGRectMake(0, 0, 30, 30);
         [cell.textLabel setFont:[UIFont boldSystemFontOfSize:FONT_SIZE]];
         [cell.textLabel setTextColor:[UIColor whiteColor]];
         [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
-        [cell setBackgroundColor:[UIColor clearColor]];
+        [cell tableViewCellBackbround];
     }
     
     NSInteger numberOfRows = [tableView numberOfRowsInSection:indexPath.section];

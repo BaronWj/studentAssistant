@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "FTSlideController.h"
 #import "BaseViewController.h"
-//#import "ASActiveDynamicViewController.h"
+#import "ASActiveDynamicViewController.h"
 #import "ViewController.h"
+#import "asActiveSetting.h"
+#import "asActivityLabelViewModel.h"
+#import "asActiVityLabelModel.h"
+#import "defineSetting.h"
 @interface FTSlideAddViewController : BaseViewController<FTSlideControllerDataSource,FTSlideControllerDelegate>
 @property (nonatomic, retain)   FTSlideController *slideVC;
 @end

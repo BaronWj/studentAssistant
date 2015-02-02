@@ -7,12 +7,13 @@
 //
 
 #import "FTSlideAddViewController.h"
-//#import "CollectionViewController.h"
+#import "CollectionViewController.h"
 @interface FTSlideAddViewController ()
 {
     
-
+    NSMutableArray *  array_title;
 }
+@property (strong, nonatomic)   NSArray         * asActiveModelArray;
 
 @end
 
@@ -22,14 +23,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self changeViewControllTitle:@"新闻"];
-    _slideVC = [[FTSlideController alloc] init];
-    _slideVC.view.backgroundColor = [UIColor clearColor];
-    _slideVC.view.userInteractionEnabled = YES;
-    _slideVC.slideDataSource = self;
-    _slideVC.slideDelegate = self;
-    [self addChildViewController:_slideVC];
-    [self.view addSubview:_slideVC.view];
-    _slideVC.view.frame = CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.width);
+    array_title = [[NSMutableArray alloc]initWithCapacity:0];
+
     
     UIButton * _rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_rightButton setBackgroundImage:[UIImage imageNamed:@"collect"] forState:UIControlStateNormal];
@@ -38,13 +33,48 @@
     UIBarButtonItem * buttonItem = [[UIBarButtonItem alloc] initWithCustomView:_rightButton];
     self.navigationItem.rightBarButtonItem = buttonItem;
     [_rightButton addTarget:self action:@selector(pressCollection:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    asActivityLabelViewModel * actityViewModel = [[asActivityLabelViewModel alloc]init];
+    [actityViewModel requestActivityViewModelData];
+    [SVProgressHUD showSuccessWithStatus:@"正在加载"];
+    
+    [actityViewModel setBlockWithReturnBlock:^(id returnValue){
+        [SVProgressHUD dismiss];
+        _asActiveModelArray = returnValue;
+        [self cretaAsactiveLabel:_asActiveModelArray];
+    } WithErrorBlock:^(id errorCode){
+        [SVProgressHUD dismiss];
+        
+    }WithFailureBlock:^{
+        [SVProgressHUD dismiss];
+        
+    }];
+}
+
+-(void)cretaAsactiveLabel:(NSArray*)asActivity{
+    for (asActiVityLabelModel * labelModel in asActivity) {
+        [array_title addObject:labelModel.className];
+        MyLog(@"%@",labelModel.className );
+    }
+    _slideVC = [[FTSlideController alloc] init];
+    _slideVC.view.backgroundColor = [UIColor clearColor];
+    _slideVC.view.userInteractionEnabled = YES;
+    _slideVC.slideDataSource = self;
+    _slideVC.slideDelegate = self;
+    [self addChildViewController:_slideVC];
+    [self.view addSubview:_slideVC.view];
+    _slideVC.view.frame = CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.width);
 
 }
+
+
 -(void)pressCollection:(id)sender{
-//    CollectionViewController * collection = [[CollectionViewController alloc]init];
-//    [collection changeViewControllTitle:@"收藏"];
-//    collection.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:collection animated:YES];
+    CollectionViewController * collection = [[CollectionViewController alloc]init];
+    [collection changeViewControllTitle:@"收藏"];
+    collection.title  = @"收藏";
+    collection.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:collection animated:YES];
 }
 
 
@@ -52,28 +82,28 @@
 #pragma mark --- FTSlideControllDelegate
 - (NSInteger)numberOfSlideChildViewController:(FTSlideController *)slideVC
 {
-    return 4;
+    return [array_title count];
 }
 
 - (UIViewController *)slideController:(FTSlideController *)slideVC viewControllerAtIndex:(NSInteger)index
 {
-//    if (index == 0) {
-////        ASActiveDynamicViewController * ASActiveDynamic = [[ASActiveDynamicViewController alloc]init];
-////        return ASActiveDynamic;
-//    }else if(index ==1){
-//        ASActiveDynamicViewController * ASActiveDynamic = [[ASActiveDynamicViewController alloc]init];
-//        return ASActiveDynamic;
-//    }else if(index ==2){
-//        ASActiveDynamicViewController * ASActiveDynamic = [[ASActiveDynamicViewController alloc]init];
-//        return ASActiveDynamic;
-//    }else if(index ==3){
-//        ASActiveDynamicViewController * ASActiveDynamic = [[ASActiveDynamicViewController alloc]init];
-//        return ASActiveDynamic;
-//    }else{
-//        ASActiveDynamicViewController * ASActiveDynamic = [[ASActiveDynamicViewController alloc]init];
-//        return ASActiveDynamic;
-//    }
-    return nil;
+    if (index == 0) {
+        ASActiveDynamicViewController * ASActiveDynamic = [[ASActiveDynamicViewController alloc]init];
+        return ASActiveDynamic;
+    }else if(index ==1){
+        ASActiveDynamicViewController * ASActiveDynamic = [[ASActiveDynamicViewController alloc]init];
+        return ASActiveDynamic;
+    }else if(index ==2){
+        ASActiveDynamicViewController * ASActiveDynamic = [[ASActiveDynamicViewController alloc]init];
+        return ASActiveDynamic;
+    }else if(index ==3){
+        ASActiveDynamicViewController * ASActiveDynamic = [[ASActiveDynamicViewController alloc]init];
+        return ASActiveDynamic;
+    }else{
+        ASActiveDynamicViewController * ASActiveDynamic = [[ASActiveDynamicViewController alloc]init];
+        return ASActiveDynamic;
+    }
+//    return nil;
  }
 
 - (void)slideController:(FTSlideController *)slideVC stopScrollAndShowViewController:(UIViewController *)vc atIndex:(NSInteger)index
@@ -91,7 +121,9 @@
 //        [self requestGetMsgListByRemind];
 //    }
 }
-
+-(NSArray *)ViewControllerData:(FTSlideController *)slideVC{
+    return array_title;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -9,11 +9,14 @@
 #import "FTSlideController.h"
 CGFloat const topHeight = 40;
 #import "ViewController.h"
+#import "asActiveSetting.h"
 @interface FTSlideController () <UIScrollViewDelegate,chooselabelDlegate>
-
+@property (nonatomic, assign)   CGFloat          max_width;
 @property (nonatomic, retain)   UIScrollView    *titleScroll;
 @property (nonatomic, retain)   UIScrollView    *contentScroll;
 @property (nonatomic, assign)   NSInteger       totalPages;
+@property (strong, nonatomic)   NSArray         * asActiveModelArray;
+@property (nonatomic, assign)   CGFloat          firstbuttonW;
 @end
 
 @implementation FTSlideController
@@ -30,22 +33,35 @@ CGFloat const topHeight = 40;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _contentScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, topHeight, ScreenWidth, self.view.bounds.size.height - topHeight)];
+    _contentScroll.delegate = self;
+    _contentScroll.pagingEnabled = YES;
+    [self.view addSubview:_contentScroll];
+    self.max_width = 20;
+
+    array_title = [[NSMutableArray alloc]initWithCapacity:0];
+}
 
 
-    array_title = [[NSMutableArray alloc]initWithObjects:@"最新",@"校内",@"班级",@"个人",nil];
+-(void)cretaAsactiveLabel:(NSArray*)asActivity{
+//    for (asActiVityLabelModel * labelModel in asActivity) {
+//        [array_title addObject:labelModel.className];
+//        MyLog(@"%@",labelModel.className );
+//    }
+    
+//    BYConditionBar *conditionBar = [[BYConditionBar alloc] initWithFrame:CGRectMake(0, 0, BYScreenWidth, conditionScrollH)];
+//    [self.view addSubview:conditionBar];
+//
     //顶部scrollerView
     top_scroller = [[UIScrollView alloc]initWithFrame:CGRectMake(0,0, ScreenWidth-40, topHeight)];
     top_scroller.backgroundColor = [UIColorFromRGB(0xe3e4e4) colorWithAlphaComponent:0.0];
     [self.view addSubview:top_scroller];
     top_scroller.userInteractionEnabled = YES;
     top_scroller.showsHorizontalScrollIndicator = NO;
-    top_scroller.contentSize = CGSizeMake(ScreenWidth, topHeight);
     [self createButton:array_title];
     
-    _contentScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, topHeight, ScreenWidth, self.view.bounds.size.height - topHeight)];
-    _contentScroll.delegate = self;
-    _contentScroll.pagingEnabled = YES;
-    [self.view addSubview:_contentScroll];
+  
     
     _labelView = [[newlabelView alloc]init];
     _labelView.labeldelegate = self;
@@ -59,18 +75,15 @@ CGFloat const topHeight = 40;
     [arrows_Button addTarget:self action:@selector(startAnimation) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:arrows_Button];
     
-    
+    _firstbuttonW = [self calculateSizeWithFont:16 Width:MAXFLOAT Height:conditionScrollH Text:[array_title firstObject]].size.width;
     imageViewLine = [[UIImageView alloc]init];
     imageViewLine.image = [UIImage imageNamed:@"red_line_and_shadow@2x"];
-    imageViewLine.frame = CGRectMake(20, 0, 40, 40);
+    imageViewLine.frame = CGRectMake(20, 0, _firstbuttonW, 40);
     imageViewLine.backgroundColor = [UIColor clearColor];
     [top_scroller addSubview:imageViewLine];
 
-    
-    
-//    [[[UIApplication sharedApplication].delegate window] addSubview:_labelView];
 
-    // Do any additional setup after loading the view.
+    
 }
 
 //mewlabelView 代理
@@ -128,6 +141,8 @@ CGFloat const topHeight = 40;
 
 //添加顶部button
 -(void)createButton :(NSArray *)buttonTitle{
+    self.max_width = 20;
+
     if([top_scroller subviews]){
         //依次遍历self.view中的所有子视图
         for(id tmpView in [top_scroller subviews])
@@ -137,33 +152,44 @@ CGFloat const topHeight = 40;
                 [tmpView removeFromSuperview];
             }
         }
-
         for (int i = 0; i < [buttonTitle count]; i++) {
+            CGFloat buttonW = [self calculateSizeWithFont:16 Width:MAXFLOAT Height:conditionScrollH Text:[buttonTitle objectAtIndex:i]].size.width;
             UIButton * newButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            newButton.frame = CGRectMake(8 + i * 65, 0, 65, 40);
+            newButton.frame = CGRectMake(self.max_width, 0, buttonW, 40);
             newButton.tag = 1000+i;
             newButton.titleLabel.textAlignment = NSTextAlignmentCenter;
             if (i==0) {
-                [newButton setTitleColor:UIColorFromRGB(0xfbd703) forState:UIControlStateNormal];
+                [newButton setTitleColor:nav_backGround forState:UIControlStateNormal];
             }else{
-                [newButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                [newButton setTitleColor:UIColorFromRGB(0x5b5b5b) forState:UIControlStateNormal];
             }
             [newButton setTitle:[buttonTitle objectAtIndex:i] forState:UIControlStateNormal];
             newButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
             [newButton addTarget:self action:@selector(pressButton:) forControlEvents:UIControlEventTouchUpInside];
             [top_scroller addSubview:newButton];
-        }
-    
+            self.max_width += buttonW+20;
 
+        }
+        top_scroller.contentSize = CGSizeMake(self.max_width, topHeight);
     }else{
     
     }
 }
 
+//根据字的数量确定button的长度
+-(CGRect)calculateSizeWithFont:(NSInteger)Font Width:(NSInteger)Width Height:(NSInteger)Height Text:(NSString *)Text
+{
+    NSDictionary *attr = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:Font]};
+    CGRect size = [Text boundingRectWithSize:CGSizeMake(Width, Height)
+                                     options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin
+                                  attributes:attr
+                                     context:nil];
+    return size;
+}
 
 -(void)pressButton :(UIButton *)sender{
     [UIView animateWithDuration:0.2 animations:^{
-        imageViewLine.frame = CGRectMake((sender.tag - 1000) * 65 +18, 0, 40, 40);
+        imageViewLine.frame = CGRectMake(sender.frame.origin.x, 0, sender.frame.size.width, 40);
     } completion:^(BOOL finish){
         [self createSubView:sender.tag - 1000];
     }];
@@ -177,26 +203,27 @@ CGFloat const topHeight = 40;
         //        NSLog(@"++++++%@",[top_scroller subviews]);
         if ([view_button isKindOfClass:[UIButton class]]) {
             if (((UIButton *)view_button).tag == buttonTag) {
-                [((UIButton *)view_button) setTitleColor:UIColorFromRGB(0xfbd703) forState:UIControlStateNormal];
-                //                NSLog(@"蓝颜色");
+                [((UIButton *)view_button) setTitleColor:nav_backGround forState:UIControlStateNormal];
+                                NSLog(@"蓝颜色");
+                [UIView animateWithDuration:0.2 animations:^{
+                   imageViewLine.frame = CGRectMake(view_button.frame.origin.x, 0, view_button.frame.size.width, 40);
+                } completion:^(BOOL finish){
+                                
+                }];
+
             }else{
-                [((UIButton *)view_button) setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                [((UIButton *)view_button) setTitleColor:UIColorFromRGB(0x5b5b5b) forState:UIControlStateNormal];
                 //                NSLog(@"黑颜色");
                 
             }
         }
     }
-    
-    
 }
-
-
 
 #pragma mark -- 
 #pragma mark -- 点击title滚动scrollow
 -(void)createSubView:(NSInteger)currentPage{
-    
-    if (currentPage > [self.childViewControllers count]) {
+   if (currentPage > [self.childViewControllers count]) {
         ViewController * addViewController = [[ViewController alloc]init];
         addViewController.view.frame = CGRectMake(currentPage * ScreenWidth, 0, ScreenWidth, _contentScroll.bounds.size.height);
         UIViewController *pageVC = addViewController;
@@ -217,6 +244,9 @@ CGFloat const topHeight = 40;
 {
     _slideDataSource = slideDataSource;
     [self loadSlidePages];
+    [array_title setArray:[_slideDataSource ViewControllerData:self]];
+    [self cretaAsactiveLabel:array_title];
+
 }
 
 - (void)loadSlidePages
@@ -260,11 +290,6 @@ CGFloat const topHeight = 40;
             [_contentScroll addSubview:childVC.view];
             childVC.view.frame = CGRectMake(currentPage * ScreenWidth, 0, ScreenWidth, _contentScroll.bounds.size.height);
             [_slideDelegate slideController:self stopScrollAndShowViewController:childVC atIndex:currentPage];
-            [UIView animateWithDuration:0.2 animations:^{
-                imageViewLine.frame = CGRectMake(currentPage * 65 +18, 0, 40, 40);
-            } completion:^(BOOL finish){
-                
-            }];
             [self changeButtonColor:currentPage+1000];
         }
     }

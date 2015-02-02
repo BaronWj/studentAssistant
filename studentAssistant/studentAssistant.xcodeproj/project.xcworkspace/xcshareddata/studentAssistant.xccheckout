@@ -12,6 +12,8 @@
 	<dict>
 		<key>60ED6004AD49AD57ED35A341991843EC41AEABD9</key>
 		<string>https://github.com/BaronWj/studentAssistant.git</string>
+		<key>646fb212-6d06-11e3-a2a4-57cd746879f3++1155</key>
+		<string>svn://192.168.0.179/BloodSugar/BloodSugar_iOS_V1/Views/MJRefresh/MJRefresh.bundle</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>studentAssistant/studentAssistant.xcodeproj</string>
@@ -19,6 +21,13 @@
 	<dict>
 		<key>60ED6004AD49AD57ED35A341991843EC41AEABD9</key>
 		<string>../../..</string>
+		<key>646fb212-6d06-11e3-a2a4-57cd746879f3++1155</key>
+		<string>../../../studentAssistant/studentAssistant/Resources/MJRefresh/MJRefresh.bundle/</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>646fb212-6d06-11e3-a2a4-57cd746879f3++1155</key>
+		<string>svn://192.168.0.179/BloodSugar</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/BaronWj/studentAssistant.git</string>
@@ -28,6 +37,14 @@
 	<string>60ED6004AD49AD57ED35A341991843EC41AEABD9</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>646fb212-6d06-11e3-a2a4-57cd746879f3++1155</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MJRefresh.bundle</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

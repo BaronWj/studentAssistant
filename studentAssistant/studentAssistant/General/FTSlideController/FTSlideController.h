@@ -10,6 +10,7 @@
 #import "defineSetting.h"
 #import "BaseViewController.h"
 #import "newlabelView.h"
+
 //#import "FTSlideAddViewController.h"
 @protocol FTSlideControllerDelegate;
 @protocol FTSlideControllerDataSource;
@@ -36,7 +37,7 @@
 
 - (NSInteger)numberOfSlideChildViewController:(FTSlideController *)slideVC;
 - (UIViewController *)slideController:(FTSlideController *)slideVC viewControllerAtIndex:(NSInteger)index;
-
+- (NSArray *)ViewControllerData:(FTSlideController  *)slideVC;
 @end
 
 @protocol FTSlideControllerDelegate <NSObject>

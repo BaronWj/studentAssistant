@@ -79,23 +79,24 @@
         //说明文字层
         UIView *noteView=[[UIView alloc] initWithFrame:CGRectMake(0, self.bounds.size.height-24,self.bounds.size.width,24)];
 //        [noteView setBackgroundColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:0.5]];
-//        [noteView setBackgroundColor:UIColorFromRGB()];
-        [noteView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"pagebackImage"]]];
+        [noteView setBackgroundColor:UIColorFromRGB(0xededed)];
+//        [noteView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"pagebackImage"]]];
         float pageControlWidth=(pageCount-2)*10.0f+40.f;
         float pagecontrolHeight=15.0f;
         pageControl=[[UIPageControl alloc]initWithFrame:CGRectMake((self.frame.size.width-pageControlWidth),4 , pageControlWidth, pagecontrolHeight)];
         pageControl.currentPage=0;
         pageControl.numberOfPages=(pageCount-2);
-        pageControl.currentPageIndicatorTintColor = UIColorFromRGB(0xfbd703);
+        pageControl.pageIndicatorTintColor = UIColorFromRGB(0xcbcbcb);
+        pageControl.currentPageIndicatorTintColor = nav_backGround;
         [noteView addSubview:pageControl];
     
-        UIImageView * smallImage = [[UIImageView alloc]initWithFrame:CGRectMake(6, 4, 15, 15)];
-        smallImage.image = [UIImage imageNamed:@"recommed"];
-        [noteView addSubview:smallImage];
+//        UIImageView * smallImage = [[UIImageView alloc]initWithFrame:CGRectMake(6, 4, 15, 15)];
+//        smallImage.image = [UIImage imageNamed:@"recommed"];
+//        [noteView addSubview:smallImage];
         
-        noteTitle=[[UILabel alloc] initWithFrame:CGRectMake(34, 0, self.frame.size.width-pageControlWidth-15, 24)];
+        noteTitle=[[UILabel alloc] initWithFrame:CGRectMake(14, 0, self.frame.size.width-pageControlWidth-15, 24)];
         [noteTitle setText:[titleArray objectAtIndex:0]];
-        [noteTitle setTextColor:[UIColor whiteColor]];
+        [noteTitle setTextColor:UIColorFromRGB(0x5b5b5b)];
         [noteTitle setBackgroundColor:[UIColor clearColor]];
         [noteTitle setFont:[UIFont systemFontOfSize:13]];
         [noteView addSubview:noteTitle];

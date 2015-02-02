@@ -7,9 +7,10 @@
 //
 
 #import "BaseViewController.h"
-#import "defineSetting.h"
 @interface BaseViewController ()
-
+{
+    MBProgressHUD * HUD ;
+}
 @end
 
 @implementation BaseViewController
@@ -18,12 +19,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.view.backgroundColor = backGround;
+    self.view.backgroundColor = [UIColor whiteColor];
     if(IsAfterIOS7){
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.extendedLayoutIncludesOpaqueBars = NO;
         //        self.modalPresentationCapturesStatusBarAppearance = YES;
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+
     }
 //    if (_isBackButton) {
 //        _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -49,21 +52,70 @@
 //        self.navigationItem.leftBarButtonItem = buttonItem;
 //    }
     
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"topNav"] forBarMetrics:UIBarMetricsDefault];
-    UIView * titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 40)];
-    _titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _titleButton.frame = CGRectMake(0, 0, 100, 40);
-    [_titleButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [titleView addSubview:_titleButton];
-    _titleButton.titleLabel.font = [UIFont boldSystemFontOfSize:19];
-    self.navigationItem.titleView = titleView;
+    self.navigationController.navigationBar.backgroundColor = nav_backGround;
+    [self.navigationController.navigationBar setBarTintColor:nav_backGround];
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"topNav"] forBarMetrics:UIBarMetricsDefault];
+//    [self.navigationController.navigationBar.layer setMasksToBounds:YES];       // 剪切掉多余的背景
+    self.navigationController.navigationBar.titleTextAttributes = @{UITextAttributeTextColor: [UIColor whiteColor],
+                                                                    UITextAttributeFont : [UIFont boldSystemFontOfSize:18]};
+//    self.navigationController.navigationBar
+//    UIView * titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 40)];
+//    _titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    _titleButton.frame = CGRectMake(0, 0, 100, 40);
+//    [_titleButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [titleView addSubview:_titleButton];
+//    _titleButton.titleLabel.font = [UIFont boldSystemFontOfSize:19];
+//    self.navigationItem.titleView = titleView;
     
-     topNavImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 6.5)];
+//     topNavImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 6.5)];
 //    [self changeViewControllTitle:_navTitle];
     
     [self createShadow:YES];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    
 }
+
+-(void)showMbProgressHud :(BOOL) showState{
+    if (showState == YES) {
+        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+        [self.navigationController.view addSubview:HUD];
+        
+        // Set determinate mode
+        HUD.mode = MBProgressHUDModeAnnularDeterminate;
+        
+        HUD.delegate = self;
+        HUD.labelText = @"Loading";
+        
+        // myProgressTask uses the HUD instance to update progress
+        [HUD showWhileExecuting:@selector(myProgressTask) onTarget:self withObject:nil animated:YES];
+
+    }else{
+//        [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+        [HUD showWhileExecuting:@selector(hideMyProgressTask) onTarget:self withObject:nil animated:YES];
+    }
+  
+}
+- (void)myProgressTask {
+    // This just increases the progress indicator in a loop
+    float progress = 0.0f;
+    while (progress < 1.0f) {
+        progress += 0.01f;
+        HUD.progress = progress;
+        usleep(50000);
+    }
+}
+- (void)hideMyProgressTask {
+    // This just increases the progress indicator in a loop
+    float progress = 0.0f;
+    while (progress < 1.0f) {
+        progress += 0.01f;
+        HUD.progress = progress;
+        usleep(50000);
+    }
+}
+
+
 //set get方法
 -(void)setNavTitle:(NSString *)navTitle{
     if (ISNULLSTR(navTitle)) {
@@ -90,10 +142,21 @@
 }
 
 -(void)showAlert :(NSString *)title AndMessage:(NSString *)Message{
-
+    
+    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:Message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alert show];
 }
 
 -(void)showToast:(NSString *)format, ...{
+    if(!ISNULLSTR(format)){
+        va_list args;
+        va_start(args, format);
+        
+        NSString *str = [[NSString alloc]  initWithFormat:format arguments:args];
+        va_end(args);
+        [ALToastView toastInView:self.navigationController.view withText:str];
+        
+    }
 
 }
 
