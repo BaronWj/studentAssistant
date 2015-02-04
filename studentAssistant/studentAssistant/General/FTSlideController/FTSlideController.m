@@ -45,14 +45,6 @@ CGFloat const topHeight = 40;
 
 
 -(void)cretaAsactiveLabel:(NSArray*)asActivity{
-//    for (asActiVityLabelModel * labelModel in asActivity) {
-//        [array_title addObject:labelModel.className];
-//        MyLog(@"%@",labelModel.className );
-//    }
-    
-//    BYConditionBar *conditionBar = [[BYConditionBar alloc] initWithFrame:CGRectMake(0, 0, BYScreenWidth, conditionScrollH)];
-//    [self.view addSubview:conditionBar];
-//
     //顶部scrollerView
     top_scroller = [[UIScrollView alloc]initWithFrame:CGRectMake(0,0, ScreenWidth-40, topHeight)];
     top_scroller.backgroundColor = [UIColorFromRGB(0xe3e4e4) colorWithAlphaComponent:0.0];
@@ -61,7 +53,6 @@ CGFloat const topHeight = 40;
     top_scroller.showsHorizontalScrollIndicator = NO;
     [self createButton:array_title];
     
-  
     
     _labelView = [[newlabelView alloc]init];
     _labelView.labeldelegate = self;

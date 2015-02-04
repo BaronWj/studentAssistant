@@ -8,6 +8,7 @@
 
 #import "ASActiveDetailsViewController.h"
 #import "NSString+URLEncoding.h"
+#import "UIKit+AFNetworking.h"
 @interface ASActiveDetailsViewController ()<UIWebViewDelegate>
 @property (nonatomic,strong)UIWebView *webView;
 
@@ -24,7 +25,7 @@
     [self.view addSubview:_webView];
     self.webView.opaque = NO;
     NSArray *h=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[webView]-0-|" options:0 metrics:nil views:@{@"webView":_webView}];
-    NSArray *v=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-3-[webView]-0-|" options:0 metrics:nil views:@{@"webView":_webView}];
+    NSArray *v=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[webView]-0-|" options:0 metrics:nil views:@{@"webView":_webView}];
     
     [self.view addConstraints:h];
     [self.view addConstraints:v];
@@ -32,14 +33,14 @@
     _webView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     _webView.scrollView.backgroundColor = backGround;
 //    _webView.
-    NSString * info_url =[NSString stringWithFormat:@"/%@/"@"%@",[NSString string_connctUrl:GetNewInfo],_activeNewID];
-    
-    NSURLRequest * req=[NSURLRequest requestWithURL:[NSURL URLWithString:info_url]];
-    
-    [_webView loadRequest:req];
-//    [SVProgressHUD showWithStatus:@"正在加载" maskType:SVProgressHUDMaskTypeGradient];
-    [SVProgressHUD showWithStatus:@"正在加载" maskType:SVProgressHUDMaskTypeBlack];
+    MyLog(@"urlurl__%@",_activeNewID);
+    NSString * str =[NSString stringWithFormat:@"%@/%@",[NSString string_connctUrl:GetNewInfo],_activeNewID];
 
+    NSURLRequest * reqCase = [NSURLRequest requestWithURL:[NSURL URLWithString:str] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:15];
+    [_webView loadRequest:reqCase];
+    
+    [SVProgressHUD showWithStatus:@"正在加载" maskType:SVProgressHUDMaskTypeBlack];
+    
 }
 
 #pragma mark --

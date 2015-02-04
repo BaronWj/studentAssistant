@@ -65,7 +65,7 @@
     
     
     // Do any additional setup after loading the view from its nib.
-    back_view = [[UIImageView alloc]initWithFrame:CGRectMake(0, 4, ScreenWidth + 20, ScreenHeight)];
+    back_view = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth + 20, ScreenHeight)];
     back_view.image = [UIImage imageNamed:@"tableViewBack"];
     [self.view addSubview:back_view];
 
@@ -105,7 +105,7 @@
         [self.meets addObject:meet];
     }
     
-    UITableView *tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 4, self.myHeadView.frame.size.width, 460) style:UITableViewStylePlain];
+    UITableView *tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.myHeadView.frame.size.width, 460) style:UITableViewStylePlain];
     tableView.delegate=self;
     tableView.dataSource=self;
     tableView.bounces=NO;
@@ -124,7 +124,7 @@
     self.menuItems = [NSArray arrayWithObjects:@"代课详情", @"设置背景", nil];
     self.imageArray = [NSArray arrayWithObjects:@"substituteClass", @"Vector-Smart-Object", nil];
 
-    self.timeView=[[TimeView alloc]initWithFrame:CGRectMake(0, 30+4, kWidth*0.5, kCount*(kHeight+kHeightMargin))];
+    self.timeView=[[TimeView alloc]initWithFrame:CGRectMake(0, 30, kWidth*0.5, kCount*(kHeight+kHeightMargin))];
     self.timeView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.05];
     [self.view addSubview:self.timeView];
     self.timeView.weekArray = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11"];
@@ -213,7 +213,7 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     NSLog(@"%f",scrollView.contentOffset.x);
-    back_view.frame = CGRectMake(-scrollView.contentOffset.x/40, 4, ScreenWidth+20, ScreenHeight);
+    back_view.frame = CGRectMake(-scrollView.contentOffset.x/40, 0, ScreenWidth+20, ScreenHeight);
     CGFloat offsetY= self.myTableView.contentOffset.y;
     CGPoint timeOffsetY=self.timeView.timeTableView.contentOffset;
     timeOffsetY.y=offsetY;

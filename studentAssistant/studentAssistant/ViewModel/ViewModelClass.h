@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "defineSetting.h"
 #import "ASAPIClient.h"
+#import "NSString+URLEncoding.h"
+
 @interface ViewModelClass : NSObject
 
 @property (strong, nonatomic) ReturnValueBlock returnBlock;

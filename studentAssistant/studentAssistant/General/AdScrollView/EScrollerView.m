@@ -54,8 +54,7 @@
             UIImageView *imgView=[[UIImageView alloc] init];
             if ([imgURL hasPrefix:@"http://"]) {
                 //网络图片 请使用ego异步图片库
-                [imgView setImageWithURL:[NSURL URLWithString:imgURL]placeholderImage:[UIImage imageNamed:@"defaultFocus"]];
-                
+                [imgView setImageWithURL:[NSURL URLWithString:imgURL]placeholderImage:[UIImage imageNamed:@"defaultFocus"] options:SDWebImageContinueInBackground];
             }
             else
             {

@@ -22,7 +22,7 @@
 		<key>60ED6004AD49AD57ED35A341991843EC41AEABD9</key>
 		<string>../../..</string>
 		<key>646fb212-6d06-11e3-a2a4-57cd746879f3++1155</key>
-		<string>../../../studentAssistant/studentAssistant/Resources/MJRefresh/MJRefresh.bundle/</string>
+		<string>../../../studentAssistant/studentAssistant/Resources/MJRefresh/MJRefresh.bundle</string>
 	</dict>
 	<key>IDESourceControlProjectRepositoryRootDictionary</key>
 	<dict>

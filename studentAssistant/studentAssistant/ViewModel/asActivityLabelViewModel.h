@@ -8,7 +8,6 @@
 
 //#import <Foundation/Foundation.h>
 #import "ViewModelClass.h"
-#import "defineSetting.h"
 #import "asActiVityLabelModel.h"
 @interface asActivityLabelViewModel :ViewModelClass
 -(void)requestActivityViewModelData;

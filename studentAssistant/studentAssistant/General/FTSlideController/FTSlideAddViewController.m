@@ -52,6 +52,9 @@
     }];
 }
 
+
+
+
 -(void)cretaAsactiveLabel:(NSArray*)asActivity{
     for (asActiVityLabelModel * labelModel in asActivity) {
         [array_title addObject:labelModel.className];
@@ -65,7 +68,6 @@
     [self addChildViewController:_slideVC];
     [self.view addSubview:_slideVC.view];
     _slideVC.view.frame = CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.width);
-
 }
 
 
@@ -87,23 +89,9 @@
 
 - (UIViewController *)slideController:(FTSlideController *)slideVC viewControllerAtIndex:(NSInteger)index
 {
-    if (index == 0) {
-        ASActiveDynamicViewController * ASActiveDynamic = [[ASActiveDynamicViewController alloc]init];
-        return ASActiveDynamic;
-    }else if(index ==1){
-        ASActiveDynamicViewController * ASActiveDynamic = [[ASActiveDynamicViewController alloc]init];
-        return ASActiveDynamic;
-    }else if(index ==2){
-        ASActiveDynamicViewController * ASActiveDynamic = [[ASActiveDynamicViewController alloc]init];
-        return ASActiveDynamic;
-    }else if(index ==3){
-        ASActiveDynamicViewController * ASActiveDynamic = [[ASActiveDynamicViewController alloc]init];
-        return ASActiveDynamic;
-    }else{
-        ASActiveDynamicViewController * ASActiveDynamic = [[ASActiveDynamicViewController alloc]init];
-        return ASActiveDynamic;
-    }
-//    return nil;
+     ASActiveDynamicViewController * ASActiveDynamic = [[ASActiveDynamicViewController alloc]init];
+     return ASActiveDynamic;
+
  }
 
 - (void)slideController:(FTSlideController *)slideVC stopScrollAndShowViewController:(UIViewController *)vc atIndex:(NSInteger)index
@@ -111,15 +99,6 @@
         NSLog(@"slide stop scroll at index %ld",(long)index);
     //    NSLog(@"slide stop scroll at index %@",vc);
     
-//    if (index == 0) {
-//        [self requestGetNewestMsgList];
-//    }else if(index == 1){
-//        [self requestGetMsgListBySchool];
-//    }else if(index == 2){
-//        [self requestGetMsgListByClass];
-//    }else if(index == 3){
-//        [self requestGetMsgListByRemind];
-//    }
 }
 -(NSArray *)ViewControllerData:(FTSlideController *)slideVC{
     return array_title;

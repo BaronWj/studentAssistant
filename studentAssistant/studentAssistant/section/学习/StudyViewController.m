@@ -8,9 +8,9 @@
 
 #import "StudyViewController.h"
 #import "CurriculumTableViewController.h"
-//#import "AttendanceViewController.h"
-//#import "CallNameViewController.h"
-//#import "EvaluationViewController.h"
+#import "AttendanceViewController.h"
+#import "ElectiveViewController.h"
+#import "EvaluateViewController.h"
 @interface StudyViewController ()
 
 @end
@@ -22,7 +22,7 @@
     // Do any additional setup after loading the view from its nib.
     [self changeViewControllTitle:@"教学教务"];
     //    self.navTitle = @"教学教务";
-    _educational_tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-90-4) style:UITableViewStylePlain];
+    _educational_tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-90-30) style:UITableViewStylePlain];
     [_educational_tableView setExtraCellLineHidden:YES];
     _educational_tableView.delegate = self;
     _educational_tableView.dataSource = self;
@@ -41,7 +41,7 @@
     self.navigationItem.rightBarButtonItem = buttonItem;
 
     
-    _education_array = @[@{@"name":@"课程表",@"msg":@"本学期3门课 剩余课时50/300",@"headImage_url":@"classTable"},@{@"name":@"选修课",@"msg":@"已选课程4门 已退课程1门",@"headImage_url":@"elective"},@{@"name":@"评价",@"msg":@"待评价 3 评价结果 2",@"headImage_url":@"evaluation"},@{@"name":@"成绩",@"msg":@"最新成绩一门 班级最高分 150分",@"headImage_url":@"results"},@{@"name":@"考试安排",@"msg":@"最近考试:高数 日期： 2014-03-02 ",@"headImage_url":@"exam"}];
+    _education_array = @[@{@"name":@"课程表",@"msg":@"本学期3门课 剩余课时50/300",@"headImage_url":@"classTable"},@{@"name":@"考勤",@"msg":@"目前三门课异常",@"headImage_url":@"attendance"},@{@"name":@"选修课",@"msg":@"已选课程4门 已退课程1门",@"headImage_url":@"elective"},@{@"name":@"评价",@"msg":@"待评价 3 评价结果 2",@"headImage_url":@"evaluation"},@{@"name":@"成绩",@"msg":@"最新成绩一门 班级最高分 150分",@"headImage_url":@"results"},@{@"name":@"考试安排",@"msg":@"最近考试:高数 日期： 2014-03-02 ",@"headImage_url":@"exam"}];
 }
 
 -(void)refresh{
@@ -105,20 +105,24 @@
 //
 //        [self.navigationController pushViewController:callName animated:YES];
     }else if (indexPath.row == 1) {
+        AttendanceViewController * attendAnceView = [[AttendanceViewController alloc]init];
+        attendAnceView.title = @"考勤";
+        [attendAnceView setHidesBottomBarWhenPushed:YES];
+        [self.navigationController pushViewController:attendAnceView animated:YES];
     }else if (indexPath.row == 3){
-//        AttendanceViewController * attendance = [[AttendanceViewController alloc]init];
-//        attendance.title = @"考勤统计";
-//        
-//        [attendance setHidesBottomBarWhenPushed:YES];
-//        [attendance changeViewControllTitle:@"考勤统计"];
-//        //        attendance.isBackButton = YES;
-//        [self.navigationController pushViewController:attendance animated:YES];
+        EvaluateViewController * evaluate = [[EvaluateViewController alloc]init];
+        evaluate.title = @"评价教师";
+        
+        [evaluate setHidesBottomBarWhenPushed:YES];
+        //        attendance.isBackButton = YES;
+        [self.navigationController pushViewController:evaluate animated:YES];
         
     }else if (indexPath.row == 2){
-//        EvaluationViewController * education = [[EvaluationViewController alloc]init];
-//        [education setHidesBottomBarWhenPushed:YES];
-//        [self.navigationController pushViewController:education animated:YES];
-//        
+        ElectiveViewController * elective = [[ElectiveViewController alloc]init];
+        elective.title = @"选课退课";
+        [elective setHidesBottomBarWhenPushed:YES];
+        [self.navigationController pushViewController:elective animated:YES];
+//
         
     }
 }

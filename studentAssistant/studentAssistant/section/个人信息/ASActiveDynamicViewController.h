@@ -11,8 +11,9 @@
 //#import "EducationalTeachingViewController.h"
 #import "newlabelView.h"
 #import "asActivityViewModel.h"
-
+#import "focusNewModel.h"
 @interface ASActiveDynamicViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic, strong) newlabelView * lableView;
 @property(nonatomic, strong) UITableView * asactive_tableView;
+
 @end

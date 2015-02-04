@@ -130,7 +130,7 @@ typedef void (^NetWorkBlock)(BOOL netConnetState);
 #define labelTextColor UIColorFromRGB(0x5b5b5b)
 //课表
 #define kWidth 60
-#define kHeight 25
+#define kHeight 40
 
 // defineLog pattern
 #ifdef DEBUG

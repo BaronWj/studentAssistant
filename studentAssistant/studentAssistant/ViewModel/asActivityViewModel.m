@@ -7,7 +7,6 @@
 //
 
 #import "asActivityViewModel.h"
-#import "NSString+URLEncoding.h"
 #import "ASActiveDetailsViewController.h"
 @implementation asActivityViewModel
 
@@ -45,8 +44,8 @@
         if (!ISNULLSTR(PicUrl)) {
             activModel.imageUrl_str =[NSString string_connctUrl:PicUrl];
         }
-//        activModel.imageUrl_str = @"http://tp1.sinaimg.cn/3044061360/180/5658706588/0";
         MyLog(@"++++++%@", activModel.imageUrl_str);
+        activModel.imageUrl_str= [NSString string_connctUrl:[PicUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         
         activModel.activetyID =[statuses objectAtIndex:i][@"Id"];
 
