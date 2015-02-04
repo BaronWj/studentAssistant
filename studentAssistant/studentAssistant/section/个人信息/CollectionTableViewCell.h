@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CollectionTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *thumbnailmage;
 
 @end

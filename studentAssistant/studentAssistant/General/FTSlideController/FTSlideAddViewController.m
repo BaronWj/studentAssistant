@@ -10,8 +10,8 @@
 #import "CollectionViewController.h"
 @interface FTSlideAddViewController ()
 {
-    
     NSMutableArray *  array_title;
+    NSMutableArray *  array_sortId;
 }
 @property (strong, nonatomic)   NSArray         * asActiveModelArray;
 
@@ -24,7 +24,7 @@
     // Do any additional setup after loading the view from its nib.
     [self changeViewControllTitle:@"新闻"];
     array_title = [[NSMutableArray alloc]initWithCapacity:0];
-
+    array_sortId = [[NSMutableArray alloc]initWithCapacity:0];
     
     UIButton * _rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_rightButton setBackgroundImage:[UIImage imageNamed:@"collect"] forState:UIControlStateNormal];
@@ -34,11 +34,9 @@
     self.navigationItem.rightBarButtonItem = buttonItem;
     [_rightButton addTarget:self action:@selector(pressCollection:) forControlEvents:UIControlEventTouchUpInside];
     
-    
     asActivityLabelViewModel * actityViewModel = [[asActivityLabelViewModel alloc]init];
     [actityViewModel requestActivityViewModelData];
     [SVProgressHUD showSuccessWithStatus:@"正在加载"];
-    
     [actityViewModel setBlockWithReturnBlock:^(id returnValue){
         [SVProgressHUD dismiss];
         _asActiveModelArray = returnValue;
@@ -48,18 +46,18 @@
         
     }WithFailureBlock:^{
         [SVProgressHUD dismiss];
-        
     }];
+
 }
-
-
 
 
 -(void)cretaAsactiveLabel:(NSArray*)asActivity{
     for (asActiVityLabelModel * labelModel in asActivity) {
         [array_title addObject:labelModel.className];
+        [array_sortId addObject:labelModel.Id];
         MyLog(@"%@",labelModel.className );
     }
+  
     _slideVC = [[FTSlideController alloc] init];
     _slideVC.view.backgroundColor = [UIColor clearColor];
     _slideVC.view.userInteractionEnabled = YES;
@@ -68,6 +66,11 @@
     [self addChildViewController:_slideVC];
     [self.view addSubview:_slideVC.view];
     _slideVC.view.frame = CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.width);
+    [self showControllerDateCategoryId:array_sortId atIndex:0];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"FirstCategory"object:array_sortId];
+    
+ 
 }
 
 
@@ -96,13 +99,19 @@
 
 - (void)slideController:(FTSlideController *)slideVC stopScrollAndShowViewController:(UIViewController *)vc atIndex:(NSInteger)index
 {
-        NSLog(@"slide stop scroll at index %ld",(long)index);
-    //    NSLog(@"slide stop scroll at index %@",vc);
-    
+    ASActiveDynamicViewController * ASActiveDynamic = (ASActiveDynamicViewController *)vc;
+    ASActiveDynamic.sortID = [array_sortId objectAtIndex:index];
+    NSLog(@"slide stop scroll at index %ld",(long)index);
 }
+
 -(NSArray *)ViewControllerData:(FTSlideController *)slideVC{
     return array_title;
 }
+
+-(void)showControllerDateCategoryId:(NSArray * )arr atIndex:(NSInteger)index{
+
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

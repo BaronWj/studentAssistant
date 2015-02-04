@@ -15,5 +15,5 @@
 @interface ASActiveDynamicViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic, strong) newlabelView * lableView;
 @property(nonatomic, strong) UITableView * asactive_tableView;
-
+@property(nonatomic, strong) NSString * sortID;
 @end

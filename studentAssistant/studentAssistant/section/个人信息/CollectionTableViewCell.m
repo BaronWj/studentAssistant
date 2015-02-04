@@ -14,6 +14,22 @@
     // Initialization code
     [self  tableViewCellBackbround];
 }
+- (void)willTransitionToState:(UITableViewCellStateMask)state
+{
+    [super willTransitionToState:state];
+    if ((state & UITableViewCellStateShowingDeleteConfirmationMask) == UITableViewCellStateShowingDeleteConfirmationMask)
+    {
+        for (UIView *subview in self.subviews)
+        {
+            if ([NSStringFromClass([subview class]) isEqualToString:@"UITableViewCellDeleteConfirmationButton"])
+            {
+                UIImageView *deleteBtn = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 64, 33)];
+                [deleteBtn setImage:[UIImage imageNamed:@"equitAccount"]];
+                [[subview.subviews objectAtIndex:0] addSubview:deleteBtn];
+            }
+        }
+    }
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

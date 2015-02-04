@@ -88,12 +88,12 @@
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    if (navigationController.hidesBarsOnSwipe) {
-        MyLog(@"navigationController.hidesBarsOnSwipe");
-    }else{
-        MyLog(@"navigationController.hidesBarsOnSwipe == yes");
-        
-    }
+//    if (navigationController.hidesBarsOnSwipe) {
+//        MyLog(@"navigationController.hidesBarsOnSwipe");
+//    }else{
+//        MyLog(@"navigationController.hidesBarsOnSwipe == yes");
+//        
+//    }
     
     if (viewController.hidesBottomBarWhenPushed)
     {

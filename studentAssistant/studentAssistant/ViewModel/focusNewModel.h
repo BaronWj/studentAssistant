@@ -12,5 +12,5 @@
 @interface focusNewModel : ViewModelClass
 -(void)requestFocusNewsViewModelData:(NSDictionary *)parameter;
 //跳转到新闻详情页
--(void)ActivityDetailWithPublicModel: (asActiveModel *) publicModel WithViewController: (UIViewController *)superController;
+-(void)FocusNewsDetailWithPublicModel: (asActiveModel *) publicModel WithViewController: (UIViewController *)superController;
 @end

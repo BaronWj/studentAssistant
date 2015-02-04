@@ -46,8 +46,6 @@
       //activModel.imageUrl_str = @"http://tp1.sinaimg.cn/3044061360/180/5658706588/0";
         MyLog(@"++++++%@", activModel.imageUrl_str);
         
-        
-        
         activModel.activetyID =[statuses objectAtIndex:i][@"Id"];
         
         [activeModelArray addObject:activModel];
@@ -59,7 +57,7 @@
 
 
 //跳转到详情页
--(void)ActivityDetailWithPublicModel: (asActiveModel *) activeModel WithViewController: (UIViewController *)superController{
+-(void)FocusNewsDetailWithPublicModel: (asActiveModel *) activeModel WithViewController: (UIViewController *)superController{
     ASActiveDetailsViewController *detailController = [[ASActiveDetailsViewController alloc]init];
     detailController.title = @"新闻详情";
     detailController.hidesBottomBarWhenPushed = YES;

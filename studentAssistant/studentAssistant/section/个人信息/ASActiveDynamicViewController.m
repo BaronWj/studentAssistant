@@ -27,19 +27,21 @@
 @interface ASActiveDynamicViewController ()<EScrollerViewDelegate>{
     EScrollerView * scroller;
     CGRect  ESCroller_rect;
+   
+
 
 }
 /**
  *  存放假数据
  */
-@property (strong, nonatomic) NSMutableArray *fakeData;
+@property (strong, nonatomic) NSMutableArray * activeNewData_array;
 
 @property (strong, nonatomic) NSArray * asActiveModelArray;
 @property (strong, nonatomic) NSArray * focusModelArray;
 
 @property (strong, nonatomic) MJRefreshHeaderView * head;
 @property (strong, nonatomic) MJRefreshFooterView * footer;
-
+@property (assign, nonatomic) NSInteger pageNum ;
 
 @end
 
@@ -47,6 +49,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _pageNum = 1;
+    self.activeNewData_array = [[NSMutableArray alloc]initWithCapacity:0];
     // Do any additional setup after loading the view from its nib.
     [self changeViewControllTitle:@"新闻"];
     [self createShadow:NO];
@@ -64,31 +68,35 @@
 //    [SVProgressHUD showSuccessWithStatus:@"正在加载"];
     [SVProgressHUD showWithStatus:@"正在加载" maskType:SVProgressHUDMaskTypeGradient];
 
+    //注册一个observer来响应消息的传送
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveNotification:)//接收消息方法
+                                                 name:@"FirstCategory"//消息识别名称
+                                               object:nil];
     
-    [self requestNetData];
-    [self requestNetListData];
+
 }
 
+-(void)receiveNotification:(NSNotification *) not{
+    [self requestFocusNetData:[[not object] firstObject]];
+    [self requestNetListData:[[not object] firstObject]AndPageNo:@"1"];
+//    [self.head beginRefreshing];
+    _sortID =[[not object] firstObject];
+    self.pageNum ++;
+}
 //添加刷新控件
 - (void)addRefreshViews
 {
     __weak typeof(self) weakSelf = self;
-    
     //load more
-    int pageNum = 3;
-    
     _head = [MJRefreshHeaderView header];
     _head.scrollView = self.asactive_tableView;
     _head.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
-        
-//        [weakSelf.chatModel addRandomItemsToDataSource:pageNum];
-//        if (weakSelf.chatModel.dataSource.count>pageNum) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:pageNum inSection:0];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [weakSelf.asactive_tableView reloadData];
-//                [weakSelf.asactive_tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
-            });
-//        }
+        [weakSelf.activeNewData_array removeAllObjects];
+        [weakSelf.asactive_tableView reloadData];
+
+        [weakSelf requestFocusNetData:weakSelf.sortID];
+        [weakSelf requestNetListData:weakSelf.sortID AndPageNo:@"1"];
         [weakSelf.head endRefreshing];
     };
 }
@@ -97,44 +105,42 @@
 - (void)addfooterRefreshViews
 {
     __weak typeof(self) weakSelf = self;
-    
     //load more
-    int pageNum = 3;
-    
     _footer = [MJRefreshFooterView footer];
     _footer.scrollView = self.asactive_tableView;
     _footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
-        //        [weakSelf.chatModel addRandomItemsToDataSource:pageNum];
-        //        if (weakSelf.chatModel.dataSource.count>pageNum) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:pageNum inSection:0];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [weakSelf.asactive_tableView reloadData];
-            //                [weakSelf.asactive_tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
-        });
-        //        }
+        [weakSelf requestNetListData:weakSelf.sortID AndPageNo:[NSString stringWithFormat:@"%ld",(long)weakSelf.pageNum]] ;
         [weakSelf.footer endRefreshing];
+        weakSelf.pageNum ++;
     };
 }
 
+-(void)setSortID:(NSString *)sortID{
+//    [self.head beginRefreshing];
+    [self requestFocusNetData:sortID];
+    [self requestNetListData:sortID AndPageNo:@"1"];
+    
+    
+}
+
 //请求新闻列表数据
--(void)requestNetListData{
+-(void)requestNetListData:(NSString *)sortID AndPageNo:(NSString *)pageNo{
     asActivityViewModel * actityViewModel = [[asActivityViewModel alloc]init];
     NSDictionary * dict = @{
-                            @"categoryId":@"1",
-                            @"pageNo":@"1",
+                            @"sortId":sortID,
+                            @"pageNo":pageNo,
                             @"pageSize":@"5"
                             };
     [actityViewModel requestActivityViewModelData:dict];
     [actityViewModel setBlockWithReturnBlock:^(id returnValue){
         _asActiveModelArray = returnValue;
-        [self.asactive_tableView reloadData];
+        [self.activeNewData_array addObjectsFromArray:_asActiveModelArray];
+//        [self.head endRefreshing];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [_asactive_tableView reloadData];
+        });
+
         [SVProgressHUD dismiss];
-        
-        for (asActiveModel * labelModel in _asActiveModelArray) {
-            MyLog(@"%@",labelModel.title_str);
-        }
-        
-        MyLog(@"__newsInfo_newsInfo______%@",returnValue);
     } WithErrorBlock:^(id errorCode){
         [SVProgressHUD dismiss];
         
@@ -146,10 +152,10 @@
 
 
 #pragma mark GetFocusNews
--(void)requestNetData{
+-(void)requestFocusNetData:(NSString *)sortID{
     focusNewModel * focusNewViewModel = [[focusNewModel alloc]init];
     NSDictionary * dict = @{
-                            @"SortId":@"89bb9ba6-10a2-e411-96c2-d850e6dd285f"
+                            @"sortId":sortID
                             };
     [focusNewViewModel requestFocusNewsViewModelData:dict];
     [focusNewViewModel setBlockWithReturnBlock: ^(id returnValue){
@@ -161,18 +167,12 @@
         for (asActiveModel * labelModel in _focusModelArray) {
             [titleArray addObject:labelModel.title_str];
             [imageUrl_Array addObject:labelModel.imageUrl_str];
-              MyLog(@"__labelModel.imageUrl_str______%@",labelModel.imageUrl_str);
         }
-        MyLog(@"__titleArray______%@",titleArray);
-        MyLog(@"__imageUrl_Array______%@",imageUrl_Array);
         [self createFocusScroller:imageUrl_Array AndTitleName:titleArray];
-        MyLog(@"__newsInfo_newsInfo______%@",returnValue);
     } WithErrorBlock:^(id errorCode){
         [SVProgressHUD dismiss];
-        
     }WithFailureBlock:^{
         [SVProgressHUD dismiss];
-        
     }];
 
 }
@@ -185,13 +185,13 @@
     
     scroller.delegate = self;
     _asactive_tableView.tableHeaderView =  scroller;
-    [self.asactive_tableView reloadData];
 
 }
 
 -(void)EScrollerViewDidClicked:(NSUInteger)index
 {
-    MyLog(@"aaa");
+    focusNewModel * asactivity = [[focusNewModel alloc]init];
+    [asactivity FocusNewsDetailWithPublicModel:_focusModelArray[index-1] WithViewController:self];
 }
 #pragma mark --
 #pragma mark -- tableViewDelegate && tableViewSource
@@ -200,7 +200,7 @@
     return 80;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return  [_asActiveModelArray count];
+    return  [self.activeNewData_array count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -208,14 +208,14 @@
     if (!cell) {
        cell = [[[NSBundle mainBundle] loadNibNamed:@"AsActiveCell" owner:nil options:nil] lastObject];
     }
-    cell.activeModel = _asActiveModelArray[indexPath.row];
+    cell.activeModel = self.activeNewData_array[indexPath.row];
      return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     asActivityViewModel * asactivity = [[asActivityViewModel alloc]init];
-    [asactivity ActivityDetailWithPublicModel:_asActiveModelArray[indexPath.row] WithViewController:self];
+    [asactivity ActivityDetailWithPublicModel:self.activeNewData_array[indexPath.row] WithViewController:self];
 
 }
 
@@ -225,6 +225,13 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:YES];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"FirstCategory" object:nil];
+
+
 }
 //- (void)dealloc
 //{
