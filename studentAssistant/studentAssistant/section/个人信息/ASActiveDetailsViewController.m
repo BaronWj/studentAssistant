@@ -11,14 +11,19 @@
 #import "UIKit+AFNetworking.h"
 @interface ASActiveDetailsViewController ()<UIWebViewDelegate>
 @property (nonatomic,strong)UIWebView *webView;
-
 @end
 
 @implementation ASActiveDetailsViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    UIButton * _rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_rightButton setBackgroundImage:[UIImage imageNamed:@"collect"] forState:UIControlStateNormal];
+    _rightButton.frame = CGRectMake(0, 0, 24, 24);
+    UIBarButtonItem * buttonItem = [[UIBarButtonItem alloc] initWithCustomView:_rightButton];
+    self.navigationItem.rightBarButtonItem = buttonItem;
+    [_rightButton addTarget:self action:@selector(pressCollection:) forControlEvents:UIControlEventTouchUpInside];
+    
     _webView=[[UIWebView alloc] initWithFrame:CGRectZero];
     _webView.translatesAutoresizingMaskIntoConstraints=NO;
     _webView.delegate = self;
@@ -41,6 +46,21 @@
     
     [SVProgressHUD showWithStatus:@"正在加载" maskType:SVProgressHUDMaskTypeBlack];
     
+}
+
+-(void)pressCollection:(id)sender{
+//    192.168.1.10:8281/api/News/CollectionNews?userId=4d03484e-4c3f-e411-9227-13fa5dc9122a&newsId=1e1e3e9d-b3a2-e411-96c2-d850e6dd285f
+    NSDictionary * dict = @{
+                            @"userId":@"4d03484e-4c3f-e411-9227-13fa5dc9122a",
+                            @"newsId":@"1e1e3e9d-b3a2-e411-96c2-d850e6dd285f",
+                            };
+    [ASAPIClient getCollectionWithParameters:dict result:^(BOOL finish, NSDictionary * dict , NSError * error){
+        
+        NSLog(@"____________%d",finish);
+        NSLog(@"____________%@",dict);
+        NSLog(@"____________%@",error);
+        
+    }];
 }
 
 #pragma mark --

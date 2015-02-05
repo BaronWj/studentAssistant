@@ -10,6 +10,7 @@
 #import "NSString_Encryption.h"
 #import "UITextField+common.h"
 #import "NSString_Encryption.h"
+#import "JSONKit.h"
 //#import "BPush.h"
 //#import "sys/utsname.h"
 #define  remindAccountNormal 0
@@ -141,24 +142,30 @@
 #pragma mark -- requestDate(登陆)
 //UserName:用户名,UserPwd:密码,DeviceToken
 -(void)requestDate:(NSString *)loginState{
+    NSDictionary * dict = @{
+                            @"UserName":_accountTextFiled.text,
+                            @"Password":[NSString_Encryption getSha1String:_passwordTextFiled.text],
+                            @"LastLogonIp":@"123213",
+                          };
+//
+//       NSDictionary *dict = @{@"source" :@"0",
+//                              @"access_token" :@"8275",
+//                              @"id" :@"8275",};
+    [ASAPIClient getLoginWithParameters:dict result:^(BOOL sucess, NSDictionary *results, NSError *error){
+        if(sucess == YES){
+            MyLog(@"___%@",[results valueForKey:@"errors"]);
+            [StuSaveUserDefaults saveAccountAndPassWord:dict];
+            [StuSaveUserDefaults saveFirstLogin:YES];
+            NSLog(@"))))))))getLoginWithParameters******%@",results );
+            NSLog(@"))))))))error******%@",error );
+        }else{
+            [self showToast:@"加载失败，稍后加载"];
+        }
+    }];
     if ([StuSaveUserDefaults getFirstLogin]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ROOT" object:@"ROOT"];
 
     }else{
-        NSDictionary * dict = @{@"UserName":_accountTextFiled.text,
-                                @"Password":[NSString_Encryption getSha1String:_passwordTextFiled.text],
-                                @"LastLogonIp":@"123213",
-                                };
-        [ASAPIClient getLoginWithParameters:dict result:^(BOOL sucess, NSDictionary *results, NSError *error){
-            if(sucess == YES){
-                [StuSaveUserDefaults saveAccountAndPassWord:dict];
-                [StuSaveUserDefaults saveFirstLogin:YES];
-                NSLog(@"))))))))getLoginWithParameters******%@",results );
-                NSLog(@"))))))))error******%@",error );
-            }else{
-                [self showToast:@"加载失败，稍后加载"];
-            }
-        }];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ROOT" object:@"ROOT"];
         
     }

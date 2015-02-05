@@ -12,6 +12,7 @@
 #import "OpenUDID.h"
 #import "AppDelegate.h"
 #import "defineSetting.h"
+#import "JSONKit.h"
 static NSString * const KDAPIBaseURLString = @"http://192.168.1.200:8281/Api/";
 static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 3;
 static const unsigned long long kDefaultCacheMaxCacheSize = 20 * 1024 * 1024;
@@ -101,15 +102,20 @@ static const unsigned long long kDefaultCacheMaxCacheSize = 20 * 1024 * 1024;
 }
 
 - (AFHTTPRequestOperation *)POST:(NSString *)URLString
-                      parameters:(NSDictionary *)parameters
+                      parameters:(id)parameters
                          success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                          failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:parameters];
 //    [params setObject:@"iphone" forKey:@"device"];
 //    [params setObject:[OpenUDID value] forKey:@"deviceid"];
+//    NSString * jsonString = [parameters JSONString];
+//    MyLog(@"jsonStringjsonStringjsonString______%@",jsonString);
     return [super POST:URLString parameters:params success:success failure:failure];
 }
+
+
+//NSData *jsonData = [NSJSONSerialization dataWithJSONObject:info_dict options:NSJSONWritingPrettyPrinted error:&error];
 
 - (AFHTTPRequestOperation *)POST:(NSString *)URLString
                       parameters:(NSDictionary *)parameters
@@ -197,22 +203,26 @@ static const unsigned long long kDefaultCacheMaxCacheSize = 20 * 1024 * 1024;
 
 
 //登录接口
-+ (AFHTTPRequestOperation *)getLoginWithParameters:(NSDictionary *)parameters result:(void (^)(BOOL success, NSDictionary *results, NSError *error))block {
++ (AFHTTPRequestOperation *)getLoginWithParameters:(id )parameters result:(void (^)(BOOL success, NSDictionary *results, NSError *error))block {
 //    __weak id weakSelf = self;
     AFHTTPRequestOperation *operation =
     [[ASAPIClient sharedClient] POST:GetLogin parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
+     
      {
-//         MyLog(@"%@",responseObject);
+         MyLog(@"operation.request.URL%@",operation.request.URL);
+
+         MyLog(@"登录接口_____%@",responseObject);
 //         NSString *userID = [responseObject objectForKey:@"userid"];
 //         //  KCLogInt([userID integerValue]);
 //         if ([userID integerValue] > 0)
 //             [weakSelf cacheResults:responseObject forName:[NSString stringWithFormat:@"user-%@", userID]];
 //         if (block) block([userID integerValue] > 0, responseObject, nil);
         if (block)block(YES,responseObject,nil);
+         
      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
          if (block) block(NO, nil, error);
+         MyLog(@"登录接口_____%@",error);
      }];
-    MyLog(@"operation.request.URL%@",operation.request.URL);
     return operation;
 }
 
@@ -237,6 +247,45 @@ static const unsigned long long kDefaultCacheMaxCacheSize = 20 * 1024 * 1024;
 }
 
 
+//收藏接口
++ (AFHTTPRequestOperation *)getCollectionWithParameters:(NSDictionary *)parameters result:(void (^)(BOOL success, NSDictionary *results, NSError *error))block {
+    //    __weak id weakSelf = self;
+    AFHTTPRequestOperation *operation =
+    [[ASAPIClient sharedClient] POST:GetCollectionNews parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         //         MyLog(@"%@",responseObject);
+         //         NSString *userID = [responseObject objectForKey:@"userid"];
+         //         //  KCLogInt([userID integerValue]);
+         //         if ([userID integerValue] > 0)
+         //             [weakSelf cacheResults:responseObject forName:[NSString stringWithFormat:@"user-%@", userID]];
+         //         if (block) block([userID integerValue] > 0, responseObject, nil);
+         if (block)block(YES,responseObject,nil);
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         if (block) block(NO, nil, error);
+     }];
+    MyLog(@"operation.request.URL%@",operation.request.URL);
+    return operation;
+}
+
+//收藏列表接口
++ (AFHTTPRequestOperation *)getCollectionlistWithParameters:(NSDictionary *)parameters result:(void (^)(BOOL success, NSDictionary *results, NSError *error))block {
+    //    __weak id weakSelf = self;
+    AFHTTPRequestOperation *operation =
+    [[ASAPIClient sharedClient] POST:GetCollectionNews parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         //         MyLog(@"%@",responseObject);
+         //         NSString *userID = [responseObject objectForKey:@"userid"];
+         //         //  KCLogInt([userID integerValue]);
+         //         if ([userID integerValue] > 0)
+         //             [weakSelf cacheResults:responseObject forName:[NSString stringWithFormat:@"user-%@", userID]];
+         //         if (block) block([userID integerValue] > 0, responseObject, nil);
+         if (block)block(YES,responseObject,nil);
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         if (block) block(NO, nil, error);
+     }];
+    MyLog(@"operation.request.URL%@",operation.request.URL);
+    return operation;
+}
 
 
 

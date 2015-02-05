@@ -27,6 +27,22 @@
 
 }
 
+#pragma mark --
+#pragma mark -- collection
+-(void)requestDate{
+    NSDictionary * dict = @{};
+    [ASAPIClient getCollectionlistWithParameters:dict result:^(BOOL finish , NSDictionary * dict ,NSError * error){
+        
+        MyLog(@"_______%@",dict);
+        MyLog(@"-------%d",finish);
+        MyLog(@"-------%@",error);
+
+    }];
+
+}
+
+
+
 #pragma mark--
 #pragma mark--tableViewDelegate && tableViewDataSource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
