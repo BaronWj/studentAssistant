@@ -1,6 +1,6 @@
 //
 //  ASAPIClient.h
-//  TeacherAssistant
+//  studentAssistant
 //
 //  Created by MyUpinup on 15/1/5.
 //  Copyright (c) 2015年 MyUpinup. All rights reserved.
@@ -33,11 +33,14 @@
 + (AFHTTPRequestOperation *)getLoginWithParameters:(NSDictionary *)parameters result:(void (^)(BOOL success, NSDictionary *results, NSError *error))block;
 // 焦点新闻
 + (AFHTTPRequestOperation *)getFocusNews:(NSDictionary *)parameters result:(void (^)(BOOL success, NSDictionary *results, NSError *error))block;
-// 收藏借口
-+ (AFHTTPRequestOperation *)getCollectionWithParameters:(NSDictionary *)parameters result:(void (^)(BOOL success, NSDictionary *results, NSError *error))block;
+// 收藏接口
++ (AFHTTPRequestOperation *)getCollectionWithUrl:(NSDictionary *)url AndParameters:(NSDictionary *)parameters result:(void (^)(BOOL success, NSDictionary *results, NSError *error))block;
 //收藏列表接口
 + (AFHTTPRequestOperation *)getCollectionlistWithParameters:(NSDictionary *)parameters result:(void (^)(BOOL success, NSDictionary *results, NSError *error))block;
 
++(id)requestPost:(NSString *)URLString
+       parameter:(NSString *)parameters
+          result:(void (^)(BOOL success, NSDictionary *results, NSError *error))block;
 
 //+ (NSString*)cacheName:(NSString*)name withID:(NSUInteger)itemID;
 + (void)cacheResults:(id)results forName:(NSString*)name;

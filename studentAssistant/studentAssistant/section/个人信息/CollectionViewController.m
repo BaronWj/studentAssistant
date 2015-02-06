@@ -24,20 +24,22 @@
     _collection_tableView.dataSource = self;
     _collection_tableView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_collection_tableView];
-
+    [self requestDate];
 }
 
 #pragma mark --
 #pragma mark -- collection
 -(void)requestDate{
-    NSDictionary * dict = @{};
-    [ASAPIClient getCollectionlistWithParameters:dict result:^(BOOL finish , NSDictionary * dict ,NSError * error){
         
-        MyLog(@"_______%@",dict);
-        MyLog(@"-------%d",finish);
-        MyLog(@"-------%@",error);
-
-    }];
+//    MyLog(@"getAccountAndPassWord___%@",[StuSaveUserDefaults getAccountAndPassWord]);
+//    NSDictionary * dict = @{};
+//    [ASAPIClient getCollectionlistWithParameters:dict result:^(BOOL finish , NSDictionary * dict ,NSError * error){
+//
+//        MyLog(@"_______%@",dict);
+//        MyLog(@"-------%d",finish);
+//        MyLog(@"-------%@",error);
+//
+//    }];
 
 }
 

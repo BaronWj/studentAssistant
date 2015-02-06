@@ -1,6 +1,6 @@
 //
 //  ASAPIClient.m
-//  TeacherAssistant
+//  syudentAssistant
 //
 //  Created by MyUpinup on 15/1/5.
 //  Copyright (c) 2015年 MyUpinup. All rights reserved.
@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import "defineSetting.h"
 #import "JSONKit.h"
+#import "NSString+URLEncoding.h"
 static NSString * const KDAPIBaseURLString = @"http://192.168.1.200:8281/Api/";
 static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 3;
 static const unsigned long long kDefaultCacheMaxCacheSize = 20 * 1024 * 1024;
@@ -112,6 +113,34 @@ static const unsigned long long kDefaultCacheMaxCacheSize = 20 * 1024 * 1024;
 //    NSString * jsonString = [parameters JSONString];
 //    MyLog(@"jsonStringjsonStringjsonString______%@",jsonString);
     return [super POST:URLString parameters:params success:success failure:failure];
+}
++(id)requestPost:(NSString *)URLString
+       parameter:(NSString *)parameters
+          result:(void (^)(BOOL success, NSDictionary *results, NSError *error))block
+
+{
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@?%@",iPhoneDelegate.requestUrl,GetCollectionNews,URLString]]] ;
+    [request setHTTPMethod:@"POST"];
+    [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    NSMutableData *postBody = [NSMutableData data];
+    [postBody appendData:[[parameters JSONString] dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:postBody];
+    
+    MyLog(@"requestUrl%@",[NSURL URLWithString:[NSString stringWithFormat:@"%@%@?%@",iPhoneDelegate.requestUrl,GetCollectionNews,URLString]]);
+    //发送异步请求
+    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
+    {
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:&connectionError];
+//        NSString *result = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        block(1,dic,connectionError);
+    }];
+
+//    NSLog(@"服务器返回：%@",result);
+
+    return nil;
 }
 
 
@@ -222,6 +251,8 @@ static const unsigned long long kDefaultCacheMaxCacheSize = 20 * 1024 * 1024;
      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
          if (block) block(NO, nil, error);
          MyLog(@"登录接口_____%@",error);
+         MyLog(@"operation.request.URL%@",operation.request.URL);
+
      }];
     return operation;
 }
@@ -248,8 +279,19 @@ static const unsigned long long kDefaultCacheMaxCacheSize = 20 * 1024 * 1024;
 
 
 //收藏接口
-+ (AFHTTPRequestOperation *)getCollectionWithParameters:(NSDictionary *)parameters result:(void (^)(BOOL success, NSDictionary *results, NSError *error))block {
++ (AFHTTPRequestOperation *)getCollectionWithUrl:(NSDictionary *)url AndParameters:(NSDictionary *)parameters result:(void (^)(BOOL success, NSDictionary *results, NSError *error))block {
     //    __weak id weakSelf = self;
+//    NSString * postUrl = [NSString stringWithFormat:@"%@?%@",GetCollectionNews,url];
+    
+//    NSString * postUrl = [NSString stringWithFormat:@"%@%@?%@",@"http://192.168.1.10:8281",GetCollectionNews,@"userId=22&newsId=11"];
+    NSString * postUrl = [NSString stringWithFormat:@"userId=4d03484e-4c3f-e411-9227-13fa5dc9122a&newsId=a71e921b-57a1-e411-96c2-d850e6dd285f"];
+    NSLog(@"postUrlpostUrl——————%@",postUrl);
+//   NSString * jsonString = [postUrl JSONString];
+    NSLog(@"postUrlpostUrljson————————%@",postUrl );
+    NSURL * utl = [NSURL URLWithString:postUrl];
+
+    NSLog(@"NSURL——————%@",utl);
+
     AFHTTPRequestOperation *operation =
     [[ASAPIClient sharedClient] POST:GetCollectionNews parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
@@ -284,6 +326,23 @@ static const unsigned long long kDefaultCacheMaxCacheSize = 20 * 1024 * 1024;
          if (block) block(NO, nil, error);
      }];
     MyLog(@"operation.request.URL%@",operation.request.URL);
+    return operation;
+}
+
+
+//上传图片
++ (AFHTTPRequestOperation *)uploadWithParameters:(NSDictionary *)parameters result:(void (^)(BOOL success, NSError *error))block {
+    AFHTTPRequestOperation *operation =
+    [[ASAPIClient sharedClient] POST:@"http://upfile1.kdnet.net/upload_mobile_pic.php" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:[parameters objectForKey:@"imageData"] name:@"ufilename" fileName:@"file.jpeg" mimeType:@"image/jpeg"];
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Success: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+        MyLog(@"operation.request.URL%@",operation.request.URL);
+    
     return operation;
 }
 

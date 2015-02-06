@@ -142,19 +142,21 @@
 #pragma mark -- requestDate(登陆)
 //UserName:用户名,UserPwd:密码,DeviceToken
 -(void)requestDate:(NSString *)loginState{
+//    [self testApi];
+
     NSDictionary * dict = @{
                             @"UserName":_accountTextFiled.text,
                             @"Password":[NSString_Encryption getSha1String:_passwordTextFiled.text],
                             @"LastLogonIp":@"123213",
                           };
 //
-//       NSDictionary *dict = @{@"source" :@"0",
-//                              @"access_token" :@"8275",
-//                              @"id" :@"8275",};
+//    NSDictionary *dict = @{@"value" :@"121111111111"};4d03484e-4c3f-e411-9227-13fa5dc9122a
     [ASAPIClient getLoginWithParameters:dict result:^(BOOL sucess, NSDictionary *results, NSError *error){
+        
         if(sucess == YES){
+            
             MyLog(@"___%@",[results valueForKey:@"errors"]);
-            [StuSaveUserDefaults saveAccountAndPassWord:dict];
+            [StuSaveUserDefaults saveAccountAndPassWord:results];
             [StuSaveUserDefaults saveFirstLogin:YES];
             NSLog(@"))))))))getLoginWithParameters******%@",results );
             NSLog(@"))))))))error******%@",error );
@@ -164,12 +166,63 @@
     }];
     if ([StuSaveUserDefaults getFirstLogin]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ROOT" object:@"ROOT"];
+        [self showToast:@"登录成功"];
 
     }else{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ROOT" object:@"ROOT"];
+        [self showToast:@"登录成功"];
+
         
     }
-   }
+    
+}
+//
+//-(void)testApi{
+//        NSString *urlString = [[NSString alloc] initWithFormat:@"http://192.168.1.10:8281/api/News/CollectionNews?userId=4d03484e-4c3f-e411-9227-13fa5dc9122a&newsId=27f3f5cc-62a0-e411-96c2-d850e6dd285f"];
+//        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init] ;
+//        [request setURL:[NSURL URLWithString:urlString]];
+//        [request setHTTPMethod:@"POST"];
+////        NSString *contentType = [NSString stringWithFormat:];
+//        [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+//        
+//        NSMutableData *postBody = [NSMutableData data];
+//        [postBody appendData:[[NSString stringWithFormat:@""] dataUsingEncoding:NSUTF8StringEncoding]];
+//        [request setHTTPBody:postBody];
+//        
+//        
+//            NSHTTPURLResponse* urlResponse = nil;
+//            NSError *error = [[NSError alloc] init];
+//            NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&error];
+//            NSString *result = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+//        //
+//             NSLog(@"服务器返回：%@",result);
+//        //发送异步请求
+//        
+//        NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+//        
+//        [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
+//         
+//         {
+//             NSString *result = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//
+//             //        UIImage *image = [UIImage imageWithData:data];
+//             
+//             MyLog(@"response%@",result);
+//             //        dispatch_async(dispatch_get_main_queue(), ^{
+//             //
+//             ////            self.image = image; //主线程加载数据
+//             //            
+//             //        });
+//             MyLog(@"response%@",connectionError);
+//
+//         }];
+//    
+//        
+//        //    return result;
+//    }
+//
+//
+
 
 -(void)viewDidDisappear:(BOOL)animated{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ROOT" object:nil];

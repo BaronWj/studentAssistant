@@ -16,5 +16,5 @@
 #define GetLogin @"/api/Account/Login"//登录借口
 #define GetFocusNews @"/api/News/GetFocusNews"//获取焦点新闻
 #define GetCollectionNews @"/api/News/CollectionNews"//收藏新闻
-#define GetTest @"/2/favorites/create.json"//测试
+#define GetTest @"/api/Values"//测试
 #endif

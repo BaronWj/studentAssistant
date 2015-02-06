@@ -132,10 +132,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(judgeLoginState) name:@"ROOT" object:nil];
 
     self.appdelegate = iPhoneDelegate;
-    //    self.appdelegate.requestUrl = @"http://192.168.1.200:8281/";
+//        self.appdelegate.requestUrl = @"http://192.168.1.200:8281/";
     self.appdelegate.requestUrl = @"http://192.168.1.10:8281";
 //   self.appdelegate.requestUrl =@"http://app.nandu.com";
-//    self.appdelegate.requestUrl = @"https://api.weibo.com";
+//    self.appdelegate.requestUrl = @"http://192.168.1.112:8212";
     if ([StuSaveUserDefaults getFirstLogin]){
         [self initTabBarViewController];
         
