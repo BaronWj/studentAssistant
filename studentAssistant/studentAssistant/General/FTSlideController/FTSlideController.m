@@ -215,20 +215,21 @@ CGFloat const topHeight = 40;
 #pragma mark -- 点击title滚动scrollow
 -(void)createSubView:(NSInteger)currentPage{
    if (currentPage > [self.childViewControllers count]) {
-        ViewController * addViewController = [[ViewController alloc]init];
-        addViewController.view.frame = CGRectMake(currentPage * ScreenWidth, 0, ScreenWidth, _contentScroll.bounds.size.height);
-        UIViewController *pageVC = addViewController;
-        [self addChildViewController:pageVC];
-        [_contentScroll addSubview:pageVC.view];
-        [_slideDelegate slideController:self stopScrollAndShowViewController:pageVC atIndex:currentPage];
+//        ViewController * addViewController = [[ViewController alloc]init];
+//        addViewController.view.frame = CGRectMake(currentPage * ScreenWidth, 0, ScreenWidth, _contentScroll.bounds.size.height);
+//        UIViewController *pageVC = addViewController;
+//        [self addChildViewController:pageVC];
+//        [_contentScroll addSubview:pageVC.view];
+//        [_slideDelegate slideController:self stopScrollAndShowViewController:pageVC atIndex:currentPage];
     }else{
         UIViewController *childVC = self.childViewControllers[currentPage];
         childVC.view.frame = CGRectMake(currentPage * ScreenWidth, 0, ScreenWidth, _contentScroll.bounds.size.height);
         [_contentScroll addSubview:childVC.view];
         [_slideDelegate slideController:self stopScrollAndShowViewController:childVC atIndex:currentPage];
+        //pwj___往下
+        _contentScroll.contentOffset = CGPointMake(currentPage * ScreenWidth,0);
     }
     
-    _contentScroll.contentOffset = CGPointMake(currentPage * ScreenWidth,0);
 }
 
 - (void)setSlideDataSource:(id<FTSlideControllerDataSource>)slideDataSource

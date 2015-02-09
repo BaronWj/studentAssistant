@@ -41,7 +41,7 @@
     // Do any additional setup after loading the view from its nib.
     self.view.backgroundColor = [UIColor clearColor];
 //    [self createShadow:NO];
-//    self.view.frame = CGRectMake(0, 44, 320, screenHeight);
+    self.view.frame = CGRectMake(0, 44, ScreenWidth, screenHeight);
     _tableDataSource = [[NSMutableArray alloc] init];
     
     _contentDataSource = [[NSMutableArray alloc] init];//回复数据来源

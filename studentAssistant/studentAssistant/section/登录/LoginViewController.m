@@ -144,6 +144,9 @@
 -(void)requestDate:(NSString *)loginState{
 //    [self testApi];
 
+    if ([StuSaveUserDefaults getFirstLogin]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ROOT" object:@"ROOT"];
+        [self showToast:@"登录成功"];
     NSDictionary * dict = @{
                             @"UserName":_accountTextFiled.text,
                             @"Password":[NSString_Encryption getSha1String:_passwordTextFiled.text],
@@ -164,9 +167,6 @@
             [self showToast:@"加载失败，稍后加载"];
         }
     }];
-    if ([StuSaveUserDefaults getFirstLogin]) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"ROOT" object:@"ROOT"];
-        [self showToast:@"登录成功"];
 
     }else{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ROOT" object:@"ROOT"];

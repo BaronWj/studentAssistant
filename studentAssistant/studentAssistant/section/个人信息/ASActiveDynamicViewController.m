@@ -231,7 +231,6 @@
     [super viewWillDisappear:YES];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"FirstCategory" object:nil];
 
-
 }
 //- (void)dealloc
 //{

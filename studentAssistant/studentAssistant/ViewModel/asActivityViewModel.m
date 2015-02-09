@@ -30,10 +30,18 @@
      NSMutableArray *activeModelArray = [[NSMutableArray alloc] initWithCapacity:statuses.count];
     for (int i = 0; i < statuses.count; i ++) {
         asActiveModel * activModel = [[asActiveModel alloc] init];
-        activModel.title_str = [statuses objectAtIndex:i][@"Title"];
+        NSString * title_str = [statuses objectAtIndex:i][@"Title"];
+        if (!ISNULLSTR(title_str)) {
+            activModel.title_str = [statuses objectAtIndex:i][@"Title"];
+        }else{
+            activModel.title_str = @"未知标题";
+        }
+        
         activModel.time_str = [statuses objectAtIndex:i][@"CheckInTime"];
         if (activModel.time_str.length > 10) {
             activModel.time_str = [[statuses objectAtIndex:i][@"CheckInTime"] substringToIndex:10];
+        }else{
+              activModel.time_str = @"defaultFocus";
         }
         
         NSString * abstract_str =[statuses objectAtIndex:i][@"Brief"];
