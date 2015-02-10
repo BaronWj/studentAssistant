@@ -19,92 +19,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "studentAssistant/section/&#x6821;&#x5185;&#x804a;/SchoolInChatViewController.m"
-            timestampString = "445164882.969182"
+            filePath = "studentAssistant/section/&#x5b66;&#x4e60;/&#x9009;&#x4fee;&#x8bfe;/electiveTableViewCell.h"
+            timestampString = "445243272.658748"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "-changeButtonColor:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "studentAssistant/section/&#x6821;&#x5185;&#x804a;/SchoolInChatViewController.m"
-            timestampString = "445164886.713368"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "-changeButtonColor:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "studentAssistant/section/&#x6821;&#x5185;&#x804a;/SchoolInChatViewController.m"
-            timestampString = "445164923.416509"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "-changeButtonColor:"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[SchoolInChatViewController changeButtonColor:]"
-                  moduleName = "studentAssistant"
-                  urlString = "file:///Users/sam/Desktop/studentAssistant/studentAssistant/studentAssistant/section/%E6%A0%A1%E5%86%85%E8%81%8A/SchoolInChatViewController.m"
-                  timestampString = "445165068.415837"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "66"
-                  endingLineNumber = "66"
-                  offsetFromSymbolStart = "657">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__48-[SchoolInChatViewController changeButtonColor:]_block_invoke"
-                  moduleName = "studentAssistant"
-                  urlString = "file:///Users/sam/Desktop/studentAssistant/studentAssistant/studentAssistant/section/%E6%A0%A1%E5%86%85%E8%81%8A/SchoolInChatViewController.m"
-                  timestampString = "445165068.416047"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "12">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "studentAssistant/section/&#x6821;&#x5185;&#x804a;/SchoolInChatViewController.m"
-            timestampString = "445164924.4004"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "-changeButtonColor:"
-            landmarkType = "5">
+            startingLineNumber = "14"
+            endingLineNumber = "14">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
