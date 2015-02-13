@@ -19,7 +19,7 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view from its nib.
-    self.substituteClass = [[UITableView alloc]initWithFrame:CGRectMake(0, 5, ScreenWidth, ScreenHeight - 60) style:UITableViewStylePlain];
+    self.substituteClass = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - 60) style:UITableViewStylePlain];
     self.substituteClass.delegate = self;
     self.substituteClass.dataSource = self;
     self.substituteClass.backgroundColor = backGround;

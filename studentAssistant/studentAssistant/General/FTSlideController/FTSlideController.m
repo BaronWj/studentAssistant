@@ -63,6 +63,7 @@ CGFloat const topHeight = 40;
     arrows_Button = [UIButton buttonWithType:UIButtonTypeCustom];
     [arrows_Button setBackgroundImage:[UIImage imageNamed:@"arrows"] forState:UIControlStateNormal];
     arrows_Button.frame = CGRectMake(ScreenWidth-30, 15, 13, 9) ;
+    arrows_Button.hidden = YES;
     [arrows_Button addTarget:self action:@selector(startAnimation) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:arrows_Button];
     

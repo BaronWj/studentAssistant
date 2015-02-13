@@ -12,13 +12,10 @@
 
 - (void)awakeFromNib {
     // Initialization code
-//    [self.layer setMasksToBounds:YES];
-//    [self.layer setCornerRadius:15];
-//    [self.layer setBorderWidth:15];
-//    [self.layer setBorderColor:backGround.CGColor];
-
-//     self.backgroundView
-
+    [_chooseButton.layer setMasksToBounds:YES];
+    [_chooseButton.layer setCornerRadius:3];
+    [_chooseButton.layer setBorderWidth:1];
+    [_chooseButton.layer setBorderColor:nav_backGround.CGColor];
 
 }
 

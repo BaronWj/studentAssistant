@@ -8,8 +8,8 @@
 
 #import "AsActiveCell.h"
 #import "defineSetting.h"
-#import "UITableViewCell+tableViewCell.h"
-#import "UIImageView+WebCache.h"
+
+
 @implementation AsActiveCell
 
 - (void)awakeFromNib {

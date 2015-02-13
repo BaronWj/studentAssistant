@@ -137,16 +137,16 @@
             MyLog(@"菜单");
 //    }
     
-//    if (sender.selected == NO) {
-//        [self.menuPopover dismissMenuPopover];
-//        self.menuPopover = [[MLKMenuPopover alloc] initWithFrame:CGRectMake(ScreenWidth - 150, 0, 140, 88) menuItems:self.menuItems withTitleImage:self.imageArray];
-//        self.menuPopover.menuPopoverDelegate = self;
-//        [self.menuPopover showInView:self.view];
-//        sender.selected = YES;
-//    }else{
-//        [self.menuPopover dismissMenuPopover];
-//        sender.selected = NO;
-//    }
+    if (sender.selected == NO) {
+        [self.menuPopover dismissMenuPopover];
+        self.menuPopover = [[MLKMenuPopover alloc] initWithFrame:CGRectMake(ScreenWidth - 150, 0, 140, 88) menuItems:self.menuItems withTitleImage:self.imageArray];
+        self.menuPopover.menuPopoverDelegate = self;
+        [self.menuPopover showInView:self.view];
+        sender.selected = YES;
+    }else{
+        [self.menuPopover dismissMenuPopover];
+        sender.selected = NO;
+    }
 
 }
 
@@ -206,6 +206,7 @@
     
     CourseInfoViewController * coureseInfo = [[CourseInfoViewController alloc]init];
     [coureseInfo setHidesBottomBarWhenPushed:YES];
+    coureseInfo.title = @"课表详情";
     [self.navigationController pushViewController:coureseInfo animated:YES];
     
     

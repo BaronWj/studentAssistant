@@ -12,6 +12,13 @@
     #define ScreenHeight [UIScreen mainScreen].bounds.size.height
     #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 
+
+
+#import "UITableViewCell+tableViewCell.h"
+#import "UIKit+AFNetworking.h"
+#import "NSString+URLEncoding.h"
+#import "UIImageView+UIImageCategory.h"
+
 //#endif
 // Get RGBA Color
 #define RGBA(r, g, b, a)    [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
@@ -25,8 +32,8 @@
  * userAndPassWord
  */
 #define USERANDPWED  @"USERANDPWD"
-
 #define FIRSTLODINSTATE @"FIRSTLODINSTATE"
+#define USERID @"USERID"
 //定义返回请求数据的block类型
 typedef void (^ReturnValueBlock) (id returnValue);
 typedef void (^ErrorCodeBlock) (id errorCode);

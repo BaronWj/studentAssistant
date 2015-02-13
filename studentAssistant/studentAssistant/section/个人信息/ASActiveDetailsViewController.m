@@ -7,8 +7,7 @@
 //
 
 #import "ASActiveDetailsViewController.h"
-#import "NSString+URLEncoding.h"
-#import "UIKit+AFNetworking.h"
+
 @interface ASActiveDetailsViewController ()<UIWebViewDelegate>
 @property (nonatomic,strong)UIWebView *webView;
 @end
@@ -31,38 +30,26 @@
     self.webView.opaque = NO;
     NSArray *h=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[webView]-0-|" options:0 metrics:nil views:@{@"webView":_webView}];
     NSArray *v=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[webView]-0-|" options:0 metrics:nil views:@{@"webView":_webView}];
-    
     [self.view addConstraints:h];
     [self.view addConstraints:v];
-    
     _webView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     _webView.scrollView.backgroundColor = backGround;
-//    _webView.
     MyLog(@"urlurl__%@",_activeNewID);
     NSString * str =[NSString stringWithFormat:@"%@/%@",[NSString string_connctUrl:GetNewInfo],_activeNewID];
 
     NSURLRequest * reqCase = [NSURLRequest requestWithURL:[NSURL URLWithString:str] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:15];
     [_webView loadRequest:reqCase];
-    
     [SVProgressHUD showWithStatus:@"正在加载" maskType:SVProgressHUDMaskTypeBlack];
-    
 }
 
 -(void)pressCollection:(id)sender{
-//    192.168.1.10:8281/api/News/CollectionNews?userId=4d03484e-4c3f-e411-9227-13fa5dc9122a&newsId=1e1e3e9d-b3a2-e411-96c2-d850e6dd285f
-     MyLog(@"getAccountAndPassWord___%@",[StuSaveUserDefaults getAccountAndPassWord] );
-    NSString * userID = [[StuSaveUserDefaults getAccountAndPassWord] valueForKey:@"Id"];
-//    NSDictionary * dict = @{
-//                            @"userId":@"4d03484e-4c3f-e411-9227-13fa5dc9122a",
-//                            @"newsId":@"1e1e3e9d-b3a2-e411-96c2-d850e6dd285f",
-//                            };
+    NSString * userID = [StuSaveUserDefaults getUserId];
     NSString * postrUrl =  [NSString stringWithFormat:@"userId=%@&newsId=%@",userID,_activeNewID];
-    [ASAPIClient requestPost:postrUrl parameter:nil result:^(BOOL finish , NSDictionary * dict ,NSError * error){
-        MyLog(@"000000999990000****%@",[dict valueForKey:@"msg"] );
+    [ASAPIClient getCollectionWithUrl:postrUrl result:^(BOOL finish, NSDictionary * dict, NSError * error){
+         MyLog(@"%@",error);
         if ([[dict valueForKey:@"success"] integerValue] == 1) {
-            [self showToast:@"收藏成功"];
-
-        }
+             [self showToast:@"收藏成功"];
+           }
     }];
 }
 

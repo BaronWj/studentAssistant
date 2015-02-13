@@ -13,13 +13,13 @@
 - (void)awakeFromNib {
     // Initialization code
 //    [self tableViewCellBackbround];
-    self.backgroundColor = UIColorFromRGB(0x13494f);
+    self.backgroundColor = UIColorFromRGB(0xe7e7e6);
     [self.layer setMasksToBounds:YES];
     [self.layer setCornerRadius:15];
     [self.layer setBorderWidth:6];
-    [self.layer setBorderColor:backGround.CGColor];
+    [self.layer setBorderColor:[UIColor whiteColor].CGColor];
     UIView * view = [[UIView alloc]initWithFrame:self.frame];
-    view.backgroundColor = UIColorFromRGB(0x13494f);
+    view.backgroundColor = UIColorFromRGB(0xe7e7e6);
     self.selectedBackgroundView = view;
 }
 

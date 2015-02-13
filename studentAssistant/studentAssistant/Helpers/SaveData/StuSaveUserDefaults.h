@@ -15,4 +15,6 @@
 +(void)saveFirstLogin:(BOOL)firstLoginState;
 +(BOOL)getFirstLogin;
 
++(void)saveUserID:(NSString *)string;
++(NSString *)getUserId;
 @end

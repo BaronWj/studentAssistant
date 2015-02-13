@@ -1,35 +1,32 @@
 //
-//  Elective ViewController.m
+//  ElectiveInfoViewController.m
 //  studentAssistant
 //
-//  Created by MyUpinup on 15/2/3.
+//  Created by MyUpinup on 15/2/11.
 //  Copyright (c) 2015年 MyUpinup. All rights reserved.
 //
 
-#import "ElectiveViewController.h"
-#import "electiveTableViewCell.h"
 #import "ElectiveInfoViewController.h"
-@interface ElectiveViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "electiveInfoTableViewCell.h"
+#import "TeacherInfoViewController.h"
+@interface ElectiveInfoViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
 
-@implementation ElectiveViewController
+@implementation ElectiveInfoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    // Do any additional setup after loading the view from its nib.
-    self.electiveTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - 60) style:UITableViewStylePlain];
-    self.electiveTableView.delegate = self;
-    self.electiveTableView.dataSource = self;
-    self.electiveTableView.backgroundColor = backGround;
-    [self.view addSubview:self.electiveTableView];
-//    [self.electiveTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-//    if ([self.electiveClass respondsToSelector:@selector(setSeparatorInset:)]) {
-//        [self.electiveClass setSeparatorInset:UIEdgeInsetsZero];
-//    }
+    self.electiveInfoTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - 60) style:UITableViewStylePlain];
+    self.electiveInfoTableView.delegate = self;
+    self.electiveInfoTableView.dataSource = self;
+    self.electiveInfoTableView.backgroundColor = backGround;
+    [self.view addSubview:self.electiveInfoTableView];
+  
+    self.electiveInfo_array = [[NSMutableArray alloc]initWithCapacity:0];
+    [self.electiveInfo_array setArray:@[@"课程名称",@"授课老师",@"上课地点",@"上课时间",@"课时",@"课程类型",@"学分",@"开课时间",@"选报时间"]];
 }
-
 #pragma mark --
 #pragma mark -- tableViewDelegate && tableViewDateSource
 //- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -38,33 +35,33 @@
 //}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 120;
+    return 50;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 16 ;
+    return _electiveInfo_array.count ;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *CellIdentifier = @"Cell";
-    //        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    electiveTableViewCell * cell = (electiveTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+   //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    electiveInfoTableViewCell * cell = (electiveInfoTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         //      cell = [[educationTeachingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"electiveTableViewCell" owner:nil options:nil] lastObject];
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"electiveInfoTableViewCell" owner:nil options:nil] lastObject];
     }
     
     //    cell.education_dict = [_education_array objectAtIndex:indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ElectiveInfoViewController * electiveInfo = [[ElectiveInfoViewController alloc]init];
-    electiveInfo.title = @"选修课详情";
-    electiveInfo.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:electiveInfo animated:YES];
+    TeacherInfoViewController * teacherInfo = [[TeacherInfoViewController alloc]init];
+    teacherInfo.title = @"教师详情";
+    teacherInfo.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:teacherInfo animated:YES];
 
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

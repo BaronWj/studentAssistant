@@ -28,7 +28,8 @@ static const unsigned long long kDefaultCacheMaxCacheSize = 20 * 1024 * 1024;
         _sharedClient.maxCacheSize = kDefaultCacheMaxCacheSize;
         _sharedClient.maxCacheAge = kDefaultCacheMaxCacheAge;
         _sharedClient.requestSerializer.stringEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
-       
+        [_sharedClient.requestSerializer setValue:@"4d03484e-4c3f-e411-9227-13fa5dc9122a" forHTTPHeaderField:@"OP"];
+
     });
     
     return _sharedClient;
@@ -107,12 +108,12 @@ static const unsigned long long kDefaultCacheMaxCacheSize = 20 * 1024 * 1024;
                          success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                          failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:parameters];
+//    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:parameters];
 //    [params setObject:@"iphone" forKey:@"device"];
 //    [params setObject:[OpenUDID value] forKey:@"deviceid"];
 //    NSString * jsonString = [parameters JSONString];
 //    MyLog(@"jsonStringjsonStringjsonString______%@",jsonString);
-    return [super POST:URLString parameters:params success:success failure:failure];
+    return [super POST:URLString parameters:parameters success:success failure:failure];
 }
 +(id)requestPost:(NSString *)URLString
        parameter:(NSString *)parameters
@@ -279,21 +280,13 @@ static const unsigned long long kDefaultCacheMaxCacheSize = 20 * 1024 * 1024;
 
 
 //收藏接口
-+ (AFHTTPRequestOperation *)getCollectionWithUrl:(NSDictionary *)url AndParameters:(NSDictionary *)parameters result:(void (^)(BOOL success, NSDictionary *results, NSError *error))block {
++ (AFHTTPRequestOperation *)getCollectionWithUrl:(NSString *)parameters  result:(void (^)(BOOL success, NSDictionary *results, NSError *error))block {
     //    __weak id weakSelf = self;
-//    NSString * postUrl = [NSString stringWithFormat:@"%@?%@",GetCollectionNews,url];
-    
-//    NSString * postUrl = [NSString stringWithFormat:@"%@%@?%@",@"http://192.168.1.10:8281",GetCollectionNews,@"userId=22&newsId=11"];
-    NSString * postUrl = [NSString stringWithFormat:@"userId=4d03484e-4c3f-e411-9227-13fa5dc9122a&newsId=a71e921b-57a1-e411-96c2-d850e6dd285f"];
-    NSLog(@"postUrlpostUrl——————%@",postUrl);
-//   NSString * jsonString = [postUrl JSONString];
-    NSLog(@"postUrlpostUrljson————————%@",postUrl );
-    NSURL * utl = [NSURL URLWithString:postUrl];
-
-    NSLog(@"NSURL——————%@",utl);
-
+    NSString * url = [NSString stringWithFormat:@"%@?%@",GetCollectionNews,parameters];
+    NSLog(@"NSURL——————%@",url);
+    NSDictionary * bodyDict = @{};
     AFHTTPRequestOperation *operation =
-    [[ASAPIClient sharedClient] POST:GetCollectionNews parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
+    [[ASAPIClient sharedClient] POST:url parameters:bodyDict success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          //         MyLog(@"%@",responseObject);
          //         NSString *userID = [responseObject objectForKey:@"userid"];
@@ -313,7 +306,7 @@ static const unsigned long long kDefaultCacheMaxCacheSize = 20 * 1024 * 1024;
 + (AFHTTPRequestOperation *)getCollectionlistWithParameters:(NSDictionary *)parameters result:(void (^)(BOOL success, NSDictionary *results, NSError *error))block {
     //    __weak id weakSelf = self;
     AFHTTPRequestOperation *operation =
-    [[ASAPIClient sharedClient] POST:GetCollectionNews parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
+    [[ASAPIClient sharedClient] GET:GetActivityDataUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          //         MyLog(@"%@",responseObject);
          //         NSString *userID = [responseObject objectForKey:@"userid"];
@@ -328,6 +321,30 @@ static const unsigned long long kDefaultCacheMaxCacheSize = 20 * 1024 * 1024;
     MyLog(@"operation.request.URL%@",operation.request.URL);
     return operation;
 }
+
+//删除收藏
++ (AFHTTPRequestOperation *)DeleteCollectionlistWithParameters:(NSString *)parameters result:(void (^)(BOOL success, NSDictionary *results, NSError *error))block {
+    //    __weak id weakSelf = self;
+    NSString * url = [NSString stringWithFormat:@"%@?%@",DeleteCollectionNews,parameters];
+    AFHTTPRequestOperation *operation =
+    [[ASAPIClient sharedClient] POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         //         MyLog(@"%@",responseObject);
+         //         NSString *userID = [responseObject objectForKey:@"userid"];
+         //         //  KCLogInt([userID integerValue]);
+         //         if ([userID integerValue] > 0)
+         //             [weakSelf cacheResults:responseObject forName:[NSString stringWithFormat:@"user-%@", userID]];
+         //         if (block) block([userID integerValue] > 0, responseObject, nil);
+         if (block)block(YES,responseObject,nil);
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         if (block) block(NO, nil, error);
+     }];
+    MyLog(@"operation.request.URL%@",operation.request.URL);
+    return operation;
+}
+
+
+
 
 
 //上传图片

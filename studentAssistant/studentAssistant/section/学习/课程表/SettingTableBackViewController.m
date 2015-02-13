@@ -34,7 +34,7 @@
     _backImagesArray = [NSMutableArray arrayWithObjects:@"add",@"3",@"student2",@"3",nil];
     
     UIView * footerView = [[UIView alloc]initWithFrame:CGRectMake(0, ScreenHeight-120, ScreenWidth, 60)];
-    footerView.backgroundColor = UIColorFromRGB(0x13494f);
+    footerView.backgroundColor = UIColorFromRGB(0x323232);
     [self.view addSubview:footerView];
     
     UIButton * setting_button = [UIButton buttonWithType:UIButtonTypeCustom];

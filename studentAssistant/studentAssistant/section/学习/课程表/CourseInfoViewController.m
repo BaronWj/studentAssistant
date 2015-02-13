@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.courseTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 3, ScreenWidth, ScreenHeight) style:UITableViewStylePlain];
+    self.courseTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight) style:UITableViewStylePlain];
     self.courseTableView.delegate = self;
     self.courseTableView.dataSource = self;
     self.courseTableView.backgroundColor = backGround;

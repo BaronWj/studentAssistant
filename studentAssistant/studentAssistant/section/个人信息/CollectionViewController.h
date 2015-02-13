@@ -11,5 +11,6 @@
 #import "UITableView+tableViewExtraCellHidden.h"
  
 @interface CollectionViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate>
-@property(nonatomic,strong) UITableView *  collection_tableView;
+@property(nonatomic, strong) UITableView *  collection_tableView;
+@property(nonatomic, strong) NSMutableArray * collection_array ;
 @end

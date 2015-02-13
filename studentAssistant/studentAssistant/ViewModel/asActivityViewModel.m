@@ -41,7 +41,7 @@
         if (activModel.time_str.length > 10) {
             activModel.time_str = [[statuses objectAtIndex:i][@"CheckInTime"] substringToIndex:10];
         }else{
-              activModel.time_str = @"defaultFocus";
+            activModel.time_str = @"……";
         }
         
         NSString * abstract_str =[statuses objectAtIndex:i][@"Brief"];
@@ -51,13 +51,15 @@
 //        activModel.abstract_str = @"是一个网络封包分析软件。网络封包分析软件的功能是撷取网络封包，并尽可能显示出最为详细的网络封包资料。Wireshark使用WinPCAP作为接口，直接与网.";
         NSString *PicUrl =[statuses objectAtIndex:i][@"PicUrl"];
         if (!ISNULLSTR(PicUrl)) {
-            activModel.imageUrl_str =[NSString string_connctUrl:PicUrl];
+            if ([PicUrl hasPrefix:@"http://"]) {
+                activModel.imageUrl_str = PicUrl;
+            }else{
+                activModel.imageUrl_str =[NSString string_connctUrl:PicUrl];
+            }
         }
         MyLog(@"++++++%@", activModel.imageUrl_str);
         activModel.imageUrl_str= [NSString string_connctUrl:[PicUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-        
         activModel.activetyID =[statuses objectAtIndex:i][@"Id"];
-
         [activeModelArray addObject:activModel];
     }
     self.returnBlock(activeModelArray);

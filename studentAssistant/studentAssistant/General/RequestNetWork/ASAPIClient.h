@@ -34,9 +34,11 @@
 // 焦点新闻
 + (AFHTTPRequestOperation *)getFocusNews:(NSDictionary *)parameters result:(void (^)(BOOL success, NSDictionary *results, NSError *error))block;
 // 收藏接口
-+ (AFHTTPRequestOperation *)getCollectionWithUrl:(NSDictionary *)url AndParameters:(NSDictionary *)parameters result:(void (^)(BOOL success, NSDictionary *results, NSError *error))block;
++ (AFHTTPRequestOperation *)getCollectionWithUrl:(NSString *)parameters  result:(void (^)(BOOL success, NSDictionary *results, NSError *error))block;
 //收藏列表接口
 + (AFHTTPRequestOperation *)getCollectionlistWithParameters:(NSDictionary *)parameters result:(void (^)(BOOL success, NSDictionary *results, NSError *error))block;
+//删除借口
++ (AFHTTPRequestOperation *)DeleteCollectionlistWithParameters:(NSString *)parameters result:(void (^)(BOOL success, NSDictionary *results, NSError *error))block;
 
 +(id)requestPost:(NSString *)URLString
        parameter:(NSString *)parameters

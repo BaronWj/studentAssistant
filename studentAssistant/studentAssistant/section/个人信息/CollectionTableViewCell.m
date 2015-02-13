@@ -7,13 +7,23 @@
 //
 
 #import "CollectionTableViewCell.h"
-#import "UITableViewCell+tableViewCell.h"
+
 @implementation CollectionTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
     [self  tableViewCellBackbround];
+    
 }
+-(void)setActiveModel:(asActiveModel *)activeModel{
+    self.titleLabel.text = activeModel.title_str;
+    self.abstractLabel.text = activeModel.abstract_str;
+    self.timeLabel.text = activeModel.time_str;
+    [self.thumbnailmage setImageWithURL:[NSURL URLWithString:activeModel.imageUrl_str] placeholderImage:[UIImage imageNamed:@"newDefault"]];
+    
+}
+
+
 - (void)willTransitionToState:(UITableViewCellStateMask)state
 {
     [super willTransitionToState:state];

@@ -15,6 +15,9 @@
 #define GetPeopleInfo @"/api/News/peopleInfo"//个人详情
 #define GetLogin @"/api/Account/Login"//登录借口
 #define GetFocusNews @"/api/News/GetFocusNews"//获取焦点新闻
-#define GetCollectionNews @"/api/News/CollectionNews"//收藏新闻
+#define GetCollectionNews @"/api/News/CollectionNews"//收藏新闻列表
+#define CollectionNews @"/api/News/CollectionNews"//收藏新闻
+#define DeleteCollectionNews @"/api/News/RemoveCollectionNews"//删除新闻列表
+
 #define GetTest @"/api/Values"//测试
 #endif

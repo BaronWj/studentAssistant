@@ -10,6 +10,18 @@
 #import "defineSetting.h"
 #define  userDefaults [NSUserDefaults standardUserDefaults]
 @implementation StuSaveUserDefaults
+
+//存入用户名密码ID
++(void)saveUserID:(NSString *)string{
+    [userDefaults setObject:string forKey:USERID];
+    [userDefaults synchronize];
+}
+
++(NSString *)getUserId{
+    return [userDefaults objectForKey:USERID];
+}
+
+
 //存入用户名密码
 +(void)saveAccountAndPassWord:(NSDictionary *)dict{
     [userDefaults setObject:dict forKey:USERANDPWED];

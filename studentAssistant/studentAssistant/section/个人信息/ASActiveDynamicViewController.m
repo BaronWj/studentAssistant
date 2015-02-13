@@ -43,10 +43,10 @@
 @property (strong, nonatomic) MJRefreshFooterView * footer;
 @property (assign, nonatomic) NSInteger pageNum ;
 
+
 @end
-
 @implementation ASActiveDynamicViewController
-
+@synthesize categoryID;
 - (void)viewDidLoad {
     [super viewDidLoad];
     _pageNum = 1;
@@ -74,14 +74,26 @@
                                                  name:@"FirstCategory"//消息识别名称
                                                object:nil];
     
-
+//    [self requestFocusNetData:categoryID];
+//    [self requestNetListData:categoryID AndPageNo:@"1"];
+    
+//    [[NSUserDefaults standardUserDefaults] valueForKey:@"SORTID"];
+//    NSArray * array = [[NSUserDefaults standardUserDefaults] valueForKey:@"SORTID"];
+    
+   
 }
 
 -(void)receiveNotification:(NSNotification *) not{
-    [self requestFocusNetData:[[not object] firstObject]];
-    [self requestNetListData:[[not object] firstObject]AndPageNo:@"1"];
-//    [self.head beginRefreshing];
-    _sortID =[[not object] firstObject];
+    __weak typeof(self) weakSelf = self;
+    categoryID =[not object];
+    _head = [MJRefreshHeaderView header];
+    _head.scrollView = self.asactive_tableView;
+    if ([not object]) {
+            if (weakSelf.categoryID.length) {
+                [weakSelf requestFocusNetData:weakSelf.categoryID];
+                [weakSelf requestNetListData:weakSelf.categoryID AndPageNo:@"1"];
+            }
+    }
     self.pageNum ++;
 }
 //添加刷新控件
@@ -92,11 +104,14 @@
     _head = [MJRefreshHeaderView header];
     _head.scrollView = self.asactive_tableView;
     _head.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+//        [weakSelf.head beginRefreshing];
+
         [weakSelf.activeNewData_array removeAllObjects];
         [weakSelf.asactive_tableView reloadData];
-
-        [weakSelf requestFocusNetData:weakSelf.sortID];
-        [weakSelf requestNetListData:weakSelf.sortID AndPageNo:@"1"];
+        if (weakSelf.categoryID.length) {
+            [weakSelf requestFocusNetData:weakSelf.categoryID];
+            [weakSelf requestNetListData:weakSelf.categoryID AndPageNo:@"1"];
+        }
         [weakSelf.head endRefreshing];
     };
 }
@@ -109,22 +124,28 @@
     _footer = [MJRefreshFooterView footer];
     _footer.scrollView = self.asactive_tableView;
     _footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
-        [weakSelf requestNetListData:weakSelf.sortID AndPageNo:[NSString stringWithFormat:@"%ld",(long)weakSelf.pageNum]] ;
+        if(!ISNULLSTR(weakSelf.categoryID)){
+            [weakSelf requestNetListData:weakSelf.categoryID AndPageNo:[NSString stringWithFormat:@"%ld",(long)weakSelf.pageNum]] ;
+             weakSelf.pageNum ++;
+         
+         }
         [weakSelf.footer endRefreshing];
-        weakSelf.pageNum ++;
     };
 }
-
--(void)setSortID:(NSString *)sortID{
-//    [self.head beginRefreshing];
-    [self requestFocusNetData:sortID];
-    [self requestNetListData:sortID AndPageNo:@"1"];
-    
-    
-}
+//
+//-(void)setSortID:(NSString *)sortID{
+////    [self.head beginRefreshing];
+////    [self.activeNewData_array removeAllObjects];
+//    if(!ISNULLSTR(sortID)){
+//        _sortID = sortID;
+////        [self requestFocusNetData:sortID];
+////        [self requestNetListData:sortID AndPageNo:@"1"];
+//    }
+//}
 
 //请求新闻列表数据
 -(void)requestNetListData:(NSString *)sortID AndPageNo:(NSString *)pageNo{
+
     asActivityViewModel * actityViewModel = [[asActivityViewModel alloc]init];
     NSDictionary * dict = @{
                             @"sortId":sortID,
@@ -153,6 +174,7 @@
 
 #pragma mark GetFocusNews
 -(void)requestFocusNetData:(NSString *)sortID{
+    
     focusNewModel * focusNewViewModel = [[focusNewModel alloc]init];
     NSDictionary * dict = @{
                             @"sortId":sortID

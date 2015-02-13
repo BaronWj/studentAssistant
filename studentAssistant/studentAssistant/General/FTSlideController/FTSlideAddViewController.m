@@ -14,6 +14,7 @@
     NSMutableArray *  array_sortId;
 }
 @property (strong, nonatomic)   NSArray         * asActiveModelArray;
+@property (assign, nonatomic)   NSInteger       recordNum;
 
 @end
 
@@ -21,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _recordNum = 0;
     // Do any additional setup after loading the view from its nib.
     [self changeViewControllTitle:@"新闻"];
     array_title = [[NSMutableArray alloc]initWithCapacity:0];
@@ -56,8 +58,11 @@
         [array_title addObject:labelModel.className];
         [array_sortId addObject:labelModel.Id];
         MyLog(@"%@",labelModel.className );
+        
+        [[NSUserDefaults standardUserDefaults] setValue:array_sortId forKey:@"SORTID"];
+        
     }
-  
+    MyLog(@"array_sortId%@",array_sortId);
     _slideVC = [[FTSlideController alloc] init];
     _slideVC.view.backgroundColor = [UIColor clearColor];
     _slideVC.view.userInteractionEnabled = YES;
@@ -66,11 +71,8 @@
     [self addChildViewController:_slideVC];
     [self.view addSubview:_slideVC.view];
     _slideVC.view.frame = CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.width);
-    [self showControllerDateCategoryId:array_sortId atIndex:0];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"FirstCategory"object:array_sortId];
-    
- 
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"FirstCategory"object:[array_sortId firstObject]];
 }
 
 
@@ -99,17 +101,24 @@
 
 - (void)slideController:(FTSlideController *)slideVC stopScrollAndShowViewController:(UIViewController *)vc atIndex:(NSInteger)index
 {
-    ASActiveDynamicViewController * ASActiveDynamic = (ASActiveDynamicViewController *)vc;
-    ASActiveDynamic.sortID = [array_sortId objectAtIndex:index];
-    NSLog(@"slide stop scroll at index %ld",(long)index);
-}
+    
+    
+    if (_recordNum == index) {
+        
+    }else{
+        if([StuSaveUserDefaults getFirstLogin]){
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"FirstCategory"object:[array_sortId objectAtIndex:index]];
+//            ASActiveDynamicViewController * ASActiveDynamic = (ASActiveDynamicViewController *)vc;
+//            ASActiveDynamic.categoryID = [array_sortId objectAtIndex:index];
+        }
+    }
+    _recordNum = index;
 
+//    NSLog(@"slide stop scroll at index %ld",(long)index);
+}
 -(NSArray *)ViewControllerData:(FTSlideController *)slideVC{
     return array_title;
-}
-
--(void)showControllerDateCategoryId:(NSArray * )arr atIndex:(NSInteger)index{
-
 }
 
 

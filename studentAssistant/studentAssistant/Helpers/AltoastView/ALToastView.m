@@ -28,7 +28,7 @@
 
 
 // Set visibility duration
-static const CGFloat kDuration11 = 2;
+static const CGFloat kDuration11 = 1.5;
 
 
 // Static toastview queue variable
@@ -145,7 +145,7 @@ static NSMutableArray *toasts;
         
         // Fade into parent view
         [parentView addSubview:view];
-        [UIView animateWithDuration:0.5  delay:0 options:UIViewAnimationOptionAllowUserInteraction
+        [UIView animateWithDuration:0.3  delay:0 options:UIViewAnimationOptionAllowUserInteraction
                          animations:^{
                              view.alpha = 1.0;
                          } completion:^(BOOL finished){}];

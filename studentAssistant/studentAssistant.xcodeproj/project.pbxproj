@@ -275,6 +275,16 @@
 		3FD29A5B1A834C100080508B /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD29A481A834C100080508B /* UIProgressView+AFNetworking.m */; };
 		3FD29A5C1A834C100080508B /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD29A4A1A834C100080508B /* UIRefreshControl+AFNetworking.m */; };
 		3FD29A5D1A834C100080508B /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD29A4C1A834C100080508B /* UIWebView+AFNetworking.m */; };
+		3FD722051A8AEAA9008ACC87 /* collectionModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD722041A8AEAA9008ACC87 /* collectionModelView.m */; };
+		3FD722091A8B4169008ACC87 /* ElectiveInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD722071A8B4169008ACC87 /* ElectiveInfoViewController.m */; };
+		3FD7220A1A8B4169008ACC87 /* ElectiveInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FD722081A8B4169008ACC87 /* ElectiveInfoViewController.xib */; };
+		3FD7220E1A8B418F008ACC87 /* electiveInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7220C1A8B418F008ACC87 /* electiveInfoTableViewCell.m */; };
+		3FD7220F1A8B418F008ACC87 /* electiveInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FD7220D1A8B418F008ACC87 /* electiveInfoTableViewCell.xib */; };
+		3FD952681A8C3E9A00B9D069 /* TeacherInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD952661A8C3E9A00B9D069 /* TeacherInfoViewController.m */; };
+		3FD952691A8C3E9A00B9D069 /* TeacherInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FD952671A8C3E9A00B9D069 /* TeacherInfoViewController.xib */; };
+		3FD9526B1A8C411200B9D069 /* student5.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FD9526A1A8C411200B9D069 /* student5.png */; };
+		3FD9526D1A8C504300B9D069 /* 欢迎页.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FD9526C1A8C504300B9D069 /* 欢迎页.png */; };
+		3FD9526F1A8C555D00B9D069 /* Default2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FD9526E1A8C555D00B9D069 /* Default2.png */; };
 		3FDD55AB1A81ACF800DF3A72 /* defaultFocus.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FDD55AA1A81ACF800DF3A72 /* defaultFocus.png */; };
 		3FEA3ED11A80589900FA0D9C /* tableViewBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FEA3ED01A80589900FA0D9C /* tableViewBack.png */; };
 		3FEA3ED31A8058A000FA0D9C /* back02.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FEA3ED21A8058A000FA0D9C /* back02.png */; };
@@ -764,6 +774,20 @@
 		3FD29A4A1A834C100080508B /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
 		3FD29A4B1A834C100080508B /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		3FD29A4C1A834C100080508B /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
+		3FD722031A8AEAA9008ACC87 /* collectionModelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collectionModelView.h; sourceTree = "<group>"; };
+		3FD722041A8AEAA9008ACC87 /* collectionModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = collectionModelView.m; sourceTree = "<group>"; };
+		3FD722061A8B4169008ACC87 /* ElectiveInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectiveInfoViewController.h; sourceTree = "<group>"; };
+		3FD722071A8B4169008ACC87 /* ElectiveInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectiveInfoViewController.m; sourceTree = "<group>"; };
+		3FD722081A8B4169008ACC87 /* ElectiveInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ElectiveInfoViewController.xib; sourceTree = "<group>"; };
+		3FD7220B1A8B418F008ACC87 /* electiveInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = electiveInfoTableViewCell.h; sourceTree = "<group>"; };
+		3FD7220C1A8B418F008ACC87 /* electiveInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = electiveInfoTableViewCell.m; sourceTree = "<group>"; };
+		3FD7220D1A8B418F008ACC87 /* electiveInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = electiveInfoTableViewCell.xib; sourceTree = "<group>"; };
+		3FD952651A8C3E9A00B9D069 /* TeacherInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeacherInfoViewController.h; sourceTree = "<group>"; };
+		3FD952661A8C3E9A00B9D069 /* TeacherInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeacherInfoViewController.m; sourceTree = "<group>"; };
+		3FD952671A8C3E9A00B9D069 /* TeacherInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeacherInfoViewController.xib; sourceTree = "<group>"; };
+		3FD9526A1A8C411200B9D069 /* student5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = student5.png; sourceTree = "<group>"; };
+		3FD9526C1A8C504300B9D069 /* 欢迎页.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "欢迎页.png"; sourceTree = "<group>"; };
+		3FD9526E1A8C555D00B9D069 /* Default2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default2.png; sourceTree = "<group>"; };
 		3FDD55AA1A81ACF800DF3A72 /* defaultFocus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultFocus.png; sourceTree = "<group>"; };
 		3FEA3ED01A80589900FA0D9C /* tableViewBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableViewBack.png; sourceTree = "<group>"; };
 		3FEA3ED21A8058A000FA0D9C /* back02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back02.png; sourceTree = "<group>"; };
@@ -955,6 +979,8 @@
 				3F60AA5B1A7F15410063CCA3 /* ViewModelClass.m */,
 				3FEA3F391A80CF2200FA0D9C /* focusNewModel.h */,
 				3FEA3F3A1A80CF2200FA0D9C /* focusNewModel.m */,
+				3FD722031A8AEAA9008ACC87 /* collectionModelView.h */,
+				3FD722041A8AEAA9008ACC87 /* collectionModelView.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1478,6 +1504,15 @@
 				3FEA3EE81A80740600FA0D9C /* electiveTableViewCell.h */,
 				3FEA3EE91A80740600FA0D9C /* electiveTableViewCell.m */,
 				3FEA3EEA1A80740600FA0D9C /* electiveTableViewCell.xib */,
+				3FD722061A8B4169008ACC87 /* ElectiveInfoViewController.h */,
+				3FD722071A8B4169008ACC87 /* ElectiveInfoViewController.m */,
+				3FD722081A8B4169008ACC87 /* ElectiveInfoViewController.xib */,
+				3FD7220B1A8B418F008ACC87 /* electiveInfoTableViewCell.h */,
+				3FD7220C1A8B418F008ACC87 /* electiveInfoTableViewCell.m */,
+				3FD7220D1A8B418F008ACC87 /* electiveInfoTableViewCell.xib */,
+				3FD952651A8C3E9A00B9D069 /* TeacherInfoViewController.h */,
+				3FD952661A8C3E9A00B9D069 /* TeacherInfoViewController.m */,
+				3FD952671A8C3E9A00B9D069 /* TeacherInfoViewController.xib */,
 			);
 			path = "选修课";
 			sourceTree = "<group>";
@@ -1671,6 +1706,8 @@
 				3FEA3EF11A807D0600FA0D9C /* Vector-Smart-Object.png */,
 				3FDD55AA1A81ACF800DF3A72 /* defaultFocus.png */,
 				3FEA3EF21A807D0600FA0D9C /* Vector-Smart-Object@2x.png */,
+				3FD9526C1A8C504300B9D069 /* 欢迎页.png */,
+				3FD9526E1A8C555D00B9D069 /* Default2.png */,
 				3FEA3EED1A807B2100FA0D9C /* cellBack.png */,
 				3FEA3EEE1A807B2100FA0D9C /* cellBack@2x.png */,
 				3F60ACB41A7F7C730063CCA3 /* menu.png */,
@@ -1714,6 +1751,7 @@
 				3F60ACBC1A7F80340063CCA3 /* video.png */,
 				3F60ACBD1A7F80340063CCA3 /* video@2x.png */,
 				3F60AB111A7F4CAB0063CCA3 /* arrows.png */,
+				3FD9526A1A8C411200B9D069 /* student5.png */,
 				3F60AB121A7F4CAB0063CCA3 /* arrows@2x.png */,
 				3F60AB151A7F4DF90063CCA3 /* collect.png */,
 				3F60AB0B1A7F40B70063CCA3 /* defaultHead.png */,
@@ -2172,6 +2210,7 @@
 				3F60AAE41A7F24EC0063CCA3 /* login.png in Resources */,
 				3F60AC751A7F79340063CCA3 /* 01@2x.png in Resources */,
 				3F60AAB51A7F1E550063CCA3 /* schoolChatSelected.png in Resources */,
+				3FD952691A8C3E9A00B9D069 /* TeacherInfoViewController.xib in Resources */,
 				3F60AAE31A7F24EC0063CCA3 /* login@2x.png in Resources */,
 				3F60AB0C1A7F40B70063CCA3 /* defaultHead.png in Resources */,
 				3F60AC8E1A7F79340063CCA3 /* chat_message_back.png in Resources */,
@@ -2213,6 +2252,7 @@
 				3F60ABC11A7F6CB60063CCA3 /* results@2x.png in Resources */,
 				3F60ABB91A7F6CB60063CCA3 /* attendance@2x.png in Resources */,
 				3F60ABBA1A7F6CB60063CCA3 /* elective.png in Resources */,
+				3FD7220A1A8B4169008ACC87 /* ElectiveInfoViewController.xib in Resources */,
 				3F60AB091A7F3F410063CCA3 /* newDefault@2x.png in Resources */,
 				3F60ABC71A7F743C0063CCA3 /* refresh.png in Resources */,
 				3F60AC5C1A7F79340063CCA3 /* AddressTableViewCell.xib in Resources */,
@@ -2275,11 +2315,13 @@
 				3F60ACCA1A7F80DB0063CCA3 /* classAddress.png in Resources */,
 				3F60AC581A7F79340063CCA3 /* GroupChatViewController.xib in Resources */,
 				3F60AC871A7F79340063CCA3 /* chat_animation1.png in Resources */,
+				3FD9526B1A8C411200B9D069 /* student5.png in Resources */,
 				3F60AB611A7F58CE0063CCA3 /* soaft@2x.png in Resources */,
 				3FF9D3BF1A6CF19100DD5D38 /* LaunchScreen.xib in Resources */,
 				3F60AC681A7F79340063CCA3 /* NewFriendViewController.xib in Resources */,
 				3F60AC621A7F79340063CCA3 /* ClassAddressViewController.xib in Resources */,
 				3FEA3ED31A8058A000FA0D9C /* back02.png in Resources */,
+				3FD9526F1A8C555D00B9D069 /* Default2.png in Resources */,
 				3F60AC741A7F79340063CCA3 /* student2.png in Resources */,
 				3FEA3F171A80979F00FA0D9C /* icon114.png in Resources */,
 				3F60AC661A7F79340063CCA3 /* newFriendTableViewCell.xib in Resources */,
@@ -2297,8 +2339,10 @@
 				3FEA3EF01A807B2100FA0D9C /* cellBack@2x.png in Resources */,
 				3F60AB031A7F3ACC0063CCA3 /* tabbar.png in Resources */,
 				3F60AB521A7F58C70063CCA3 /* equitAccount.png in Resources */,
+				3FD9526D1A8C504300B9D069 /* 欢迎页.png in Resources */,
 				3F60AC8A1A7F79340063CCA3 /* chat_animation_white1.png in Resources */,
 				3F60AC5A1A7F79340063CCA3 /* AddressBookViewController.xib in Resources */,
+				3FD7220F1A8B418F008ACC87 /* electiveInfoTableViewCell.xib in Resources */,
 				3F60AC891A7F79340063CCA3 /* chat_animation3.png in Resources */,
 				3F60AC931A7F79340063CCA3 /* chatfrom_bg_normal.png in Resources */,
 				3F60AB541A7F58C70063CCA3 /* me01.png in Resources */,
@@ -2396,6 +2440,7 @@
 				3FF9D68F1A6D034300DD5D38 /* UIDevice+Info.m in Sources */,
 				3FF9D6BC1A6D050000DD5D38 /* EScrollerView.m in Sources */,
 				3FF9D68D1A6D034300DD5D38 /* NSString+URLEncoding.m in Sources */,
+				3FD722091A8B4169008ACC87 /* ElectiveInfoViewController.m in Sources */,
 				3F60AB941A7F69490063CCA3 /* CurriculumTableViewController.m in Sources */,
 				3FF9D61B1A6D007300DD5D38 /* OpenUDID.m in Sources */,
 				3FD29A5B1A834C100080508B /* UIProgressView+AFNetworking.m in Sources */,
@@ -2468,6 +2513,7 @@
 				3F60AC521A7F79340063CCA3 /* UUMessageContentButton.m in Sources */,
 				3FF9D6251A6D007300DD5D38 /* UIButton+WebCache.m in Sources */,
 				3F60AC571A7F79340063CCA3 /* GroupChatViewController.m in Sources */,
+				3FD722051A8AEAA9008ACC87 /* collectionModelView.m in Sources */,
 				3F60AB411A7F54040063CCA3 /* RecomCollectionViewCell.m in Sources */,
 				3F60AA871A7F17620063CCA3 /* StuSaveUserDefaults.m in Sources */,
 				3F60AC4F1A7F79340063CCA3 /* UUInputFunctionView.m in Sources */,
@@ -2482,9 +2528,11 @@
 				3F60AB2F1A7F53AD0063CCA3 /* softwareViewController.m in Sources */,
 				3F60ACA31A7F7B4A0063CCA3 /* MLKMenuPopover.m in Sources */,
 				3F60AACC1A7F21790063CCA3 /* ForgetViewController.m in Sources */,
+				3FD952681A8C3E9A00B9D069 /* TeacherInfoViewController.m in Sources */,
 				3FF9D6881A6D034300DD5D38 /* ALToastView.m in Sources */,
 				3F60AAFB1A7F393C0063CCA3 /* newlabelView.m in Sources */,
 				3F60AB2D1A7F53AD0063CCA3 /* ModifyPwdViewController.m in Sources */,
+				3FD7220E1A8B418F008ACC87 /* electiveInfoTableViewCell.m in Sources */,
 				3FEA3EE61A80733900FA0D9C /* ElectiveViewController.m in Sources */,
 				3FEA3F141A80979F00FA0D9C /* CollapseClickArrow.m in Sources */,
 				3F60AB901A7F69490063CCA3 /* CourseInfoTableViewCell.m in Sources */,

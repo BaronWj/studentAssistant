@@ -11,8 +11,6 @@
 #import "UITextField+common.h"
 #import "NSString_Encryption.h"
 #import "JSONKit.h"
-//#import "BPush.h"
-//#import "sys/utsname.h"
 #define  remindAccountNormal 0
 #define  remindAccountSelect 1
 #define  remindPassWordNormal 0
@@ -20,6 +18,7 @@
 
 @interface LoginViewController (){
 //    StuAppDelegate *appDelegate;
+    UIView * screenView;
 }
 
 @end
@@ -38,10 +37,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     [self createShadow:NO];
     self.navigationController.navigationBarHidden = YES;
     self.view.backgroundColor = UIColorFromRGB(0x84b73e);
+    screenView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    screenView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Default2"]];
+    [self.view addSubview:screenView];
+    UIImageView * imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"欢迎页"]];
+    imageView.frame = CGRectMake(50, 200, 90, 90);
+    [screenView addSubview:imageView];
+    
+    
+    
     remindAccountState = remindAccountNormal;
     _schoolTextFiled.delegate = self;
     [_accountTextFiled setChangeTextFiledPlaceholder:@"请填写账号"];
@@ -53,13 +60,25 @@
     _schoolLable.textColor = [UIColor grayColor];
     _accountTextFiled.delegate = self;
     _passwordTextFiled.delegate = self;
-
     if (!iPhone4) {
         _forgetButton.frame  = CGRectMake(20, ScreenHeight-60, 70,40);
     }
     
-}
+    
+    
+    
+    [self performSelector:@selector(dimssScreenView) withObject:nil afterDelay:0];
 
+
+}
+-(void)dimssScreenView{
+    [UIView animateWithDuration:3 animations:^{
+        [screenView removeFromSuperview];
+    } completion:^(BOOL finish){
+    
+    }];
+
+}
 
 
 - (void)didReceiveMemoryWarning
@@ -145,24 +164,21 @@
 //    [self testApi];
 
     if ([StuSaveUserDefaults getFirstLogin]) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"ROOT" object:@"ROOT"];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"ROOT" object:@"ROOT"];
         [self showToast:@"登录成功"];
     NSDictionary * dict = @{
                             @"UserName":_accountTextFiled.text,
                             @"Password":[NSString_Encryption getSha1String:_passwordTextFiled.text],
                             @"LastLogonIp":@"123213",
                           };
-//
-//    NSDictionary *dict = @{@"value" :@"121111111111"};4d03484e-4c3f-e411-9227-13fa5dc9122a
     [ASAPIClient getLoginWithParameters:dict result:^(BOOL sucess, NSDictionary *results, NSError *error){
-        
         if(sucess == YES){
-            
             MyLog(@"___%@",[results valueForKey:@"errors"]);
             [StuSaveUserDefaults saveAccountAndPassWord:results];
+            [StuSaveUserDefaults saveUserID:[results valueForKey:@"Id"]];
             [StuSaveUserDefaults saveFirstLogin:YES];
             NSLog(@"))))))))getLoginWithParameters******%@",results );
-            NSLog(@"))))))))error******%@",error );
+            NSLog(@"))))))))error******%@",error);
         }else{
             [self showToast:@"加载失败，稍后加载"];
         }
@@ -176,52 +192,6 @@
     }
     
 }
-//
-//-(void)testApi{
-//        NSString *urlString = [[NSString alloc] initWithFormat:@"http://192.168.1.10:8281/api/News/CollectionNews?userId=4d03484e-4c3f-e411-9227-13fa5dc9122a&newsId=27f3f5cc-62a0-e411-96c2-d850e6dd285f"];
-//        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init] ;
-//        [request setURL:[NSURL URLWithString:urlString]];
-//        [request setHTTPMethod:@"POST"];
-////        NSString *contentType = [NSString stringWithFormat:];
-//        [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-//        
-//        NSMutableData *postBody = [NSMutableData data];
-//        [postBody appendData:[[NSString stringWithFormat:@""] dataUsingEncoding:NSUTF8StringEncoding]];
-//        [request setHTTPBody:postBody];
-//        
-//        
-//            NSHTTPURLResponse* urlResponse = nil;
-//            NSError *error = [[NSError alloc] init];
-//            NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&error];
-//            NSString *result = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-//        //
-//             NSLog(@"服务器返回：%@",result);
-//        //发送异步请求
-//        
-//        NSOperationQueue *queue = [[NSOperationQueue alloc]init];
-//        
-//        [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
-//         
-//         {
-//             NSString *result = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//
-//             //        UIImage *image = [UIImage imageWithData:data];
-//             
-//             MyLog(@"response%@",result);
-//             //        dispatch_async(dispatch_get_main_queue(), ^{
-//             //
-//             ////            self.image = image; //主线程加载数据
-//             //            
-//             //        });
-//             MyLog(@"response%@",connectionError);
-//
-//         }];
-//    
-//        
-//        //    return result;
-//    }
-//
-//
 
 
 -(void)viewDidDisappear:(BOOL)animated{

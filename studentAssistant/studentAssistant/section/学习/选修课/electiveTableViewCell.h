@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface electiveTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIButton *chooseButton;
 
 @end
