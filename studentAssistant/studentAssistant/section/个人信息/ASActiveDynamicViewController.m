@@ -13,7 +13,6 @@
 #import "AsActiveCell.h"
 #import "EScrollerView.h"
 #import "ASActiveDynamicViewController.h"
-#import "MJRefresh.h"
 #import "ASActiveDetailsViewController.h"
 //#import "UITableView+tableViewRefresh.h"
 //NSString *const MJTableViewCellIdentifier = @"Cell";
@@ -65,33 +64,23 @@
 //    1. 添加头部控件的方法
     [self addRefreshViews];
     [self addfooterRefreshViews];
-//    [SVProgressHUD showSuccessWithStatus:@"正在加载"];
-    [SVProgressHUD showWithStatus:@"正在加载" maskType:SVProgressHUDMaskTypeGradient];
+//  [SVProgressHUD showSuccessWithStatus:@"正在加载"];
 
     //注册一个observer来响应消息的传送
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveNotification:)//接收消息方法
                                                  name:@"FirstCategory"//消息识别名称
                                                object:nil];
-    
-//    [self requestFocusNetData:categoryID];
-//    [self requestNetListData:categoryID AndPageNo:@"1"];
-    
-//    [[NSUserDefaults standardUserDefaults] valueForKey:@"SORTID"];
-//    NSArray * array = [[NSUserDefaults standardUserDefaults] valueForKey:@"SORTID"];
-    
-   
 }
 
 -(void)receiveNotification:(NSNotification *) not{
     __weak typeof(self) weakSelf = self;
     categoryID =[not object];
-    _head = [MJRefreshHeaderView header];
-    _head.scrollView = self.asactive_tableView;
+    
     if ([not object]) {
             if (weakSelf.categoryID.length) {
                 [weakSelf requestFocusNetData:weakSelf.categoryID];
-                [weakSelf requestNetListData:weakSelf.categoryID AndPageNo:@"1"];
+                [weakSelf requestNetListData:weakSelf.categoryID AndPageNo:@"1" AndRefreshState:@"refesh"];
             }
     }
     self.pageNum ++;
@@ -99,38 +88,38 @@
 //添加刷新控件
 - (void)addRefreshViews
 {
+    [SVProgressHUD showWithStatus:@"正在加载" maskType:SVProgressHUDMaskTypeGradient];
     __weak typeof(self) weakSelf = self;
     //load more
     _head = [MJRefreshHeaderView header];
     _head.scrollView = self.asactive_tableView;
     _head.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
-//        [weakSelf.head beginRefreshing];
-
-        [weakSelf.activeNewData_array removeAllObjects];
-        [weakSelf.asactive_tableView reloadData];
         if (weakSelf.categoryID.length) {
             [weakSelf requestFocusNetData:weakSelf.categoryID];
-            [weakSelf requestNetListData:weakSelf.categoryID AndPageNo:@"1"];
+            [weakSelf requestNetListData:weakSelf.categoryID AndPageNo:@"1" AndRefreshState:@"refesh"];
         }
         [weakSelf.head endRefreshing];
+
     };
 }
 
 //添加加载控件
 - (void)addfooterRefreshViews
 {
+    [SVProgressHUD showWithStatus:@"正在加载" maskType:SVProgressHUDMaskTypeGradient];
+
     __weak typeof(self) weakSelf = self;
     //load more
     _footer = [MJRefreshFooterView footer];
     _footer.scrollView = self.asactive_tableView;
     _footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
         if(!ISNULLSTR(weakSelf.categoryID)){
-            [weakSelf requestNetListData:weakSelf.categoryID AndPageNo:[NSString stringWithFormat:@"%ld",(long)weakSelf.pageNum]] ;
+            [weakSelf requestNetListData:weakSelf.categoryID AndPageNo:[NSString stringWithFormat:@"%ld",(long)weakSelf.pageNum] AndRefreshState:@"Add"] ;
              weakSelf.pageNum ++;
-         
          }
-        [weakSelf.footer endRefreshing];
+//        [weakSelf.footer endRefreshing];
     };
+
 }
 //
 //-(void)setSortID:(NSString *)sortID{
@@ -144,7 +133,7 @@
 //}
 
 //请求新闻列表数据
--(void)requestNetListData:(NSString *)sortID AndPageNo:(NSString *)pageNo{
+-(void)requestNetListData:(NSString *)sortID AndPageNo:(NSString *)pageNo AndRefreshState:(NSString *)refreshState{
 
     asActivityViewModel * actityViewModel = [[asActivityViewModel alloc]init];
     NSDictionary * dict = @{
@@ -155,18 +144,27 @@
     [actityViewModel requestActivityViewModelData:dict];
     [actityViewModel setBlockWithReturnBlock:^(id returnValue){
         _asActiveModelArray = returnValue;
-        [self.activeNewData_array addObjectsFromArray:_asActiveModelArray];
+        [SVProgressHUD dismiss];
+
+        if ([refreshState isEqualToString:@"refesh"])
+        {
+            [self.activeNewData_array removeAllObjects];
+            [self.asactive_tableView reloadData];
+            [self.activeNewData_array setArray:_asActiveModelArray];
+            [self.head endRefreshing];
+        }else{
+            [self.activeNewData_array addObjectsFromArray:_asActiveModelArray];
+            [self.footer endRefreshing];
+        }
 //        [self.head endRefreshing];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [_asactive_tableView reloadData];
         });
 
-        [SVProgressHUD dismiss];
     } WithErrorBlock:^(id errorCode){
-        [SVProgressHUD dismiss];
         
     }WithFailureBlock:^{
-        [SVProgressHUD dismiss];
+        
     }];
 }
 
@@ -174,15 +172,15 @@
 
 #pragma mark GetFocusNews
 -(void)requestFocusNetData:(NSString *)sortID{
-    
     focusNewModel * focusNewViewModel = [[focusNewModel alloc]init];
+
     NSDictionary * dict = @{
                             @"sortId":sortID
                             };
     [focusNewViewModel requestFocusNewsViewModelData:dict];
     [focusNewViewModel setBlockWithReturnBlock: ^(id returnValue){
-        _focusModelArray = returnValue;
         [SVProgressHUD dismiss];
+        _focusModelArray = returnValue;
         NSMutableArray * titleArray = [[NSMutableArray alloc]initWithCapacity:0];
         NSMutableArray * imageUrl_Array = [[NSMutableArray alloc]initWithCapacity:0];
 
@@ -192,12 +190,12 @@
         }
         [self createFocusScroller:imageUrl_Array AndTitleName:titleArray];
     } WithErrorBlock:^(id errorCode){
-        [SVProgressHUD dismiss];
     }WithFailureBlock:^{
-        [SVProgressHUD dismiss];
     }];
 
 }
+
+
 #pragma mark - 构建广告滚动视图
 -(void)createFocusScroller : (NSArray *)image_url AndTitleName:(NSArray *)title_array{
     ESCroller_rect = CGRectMake(0, 0, ScreenWidth, 170);
@@ -251,6 +249,8 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:YES];
+    [_head free];
+    [_footer free];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"FirstCategory" object:nil];
 
 }
