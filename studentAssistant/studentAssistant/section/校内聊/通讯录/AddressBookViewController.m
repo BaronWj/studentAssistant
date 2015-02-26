@@ -8,12 +8,12 @@
 
 #import "AddressBookViewController.h"
 #import "UITableView+tableViewExtraCellHidden.h"
-#import "UISearchBar+ChatSearchBar.h"
 #import "DataSearchViewController.h"
 #import "JSONKit.h"
 #import "Bank.h"
 #import "NewFriendViewController.h"
 #import "ClassAddressViewController.h"
+#import "EMSearchBar.h"
 #define DocumentPaths  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)//Document文件路径
 #define CacehFileName(_x) [[DocumentPaths objectAtIndex:0]stringByAppendingPathComponent:_x]
 @interface AddressBookViewController ()<UISearchBarDelegate,DataSearchDelegate>
@@ -27,11 +27,11 @@
     // Do any additional setup after loading the view from its nib.
     [self createShadow:NO];
     
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame: CGRectMake(0.0f, 0.0f, ScreenWidth, 40.0f)];
+    EMSearchBar *searchBar = [[EMSearchBar alloc] initWithFrame: CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 44.0f)];
     searchBar.placeholder = @"搜索";
     searchBar.delegate = self;
 
-    [searchBar searchBarUICustom];//seacrchBar样式
+//    [searchBar searchBarUICustom];//seacrchBar样式
     
     
     self.address_tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - 160) style:UITableViewStylePlain];
@@ -74,6 +74,11 @@
 }
 
 
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:YES];
+    self.address_tableView.contentOffset = CGPointMake(0, 44);
+    
+}
 
 //-(BOOL)searchDisplayController:(UISearchDisplayController *)controller
 //shouldReloadTableForSearchString:(NSString *)searchString

@@ -147,12 +147,12 @@
                   symbolName = "-[ASActiveDynamicViewController addRefreshViews]"
                   moduleName = "studentAssistant"
                   urlString = "file:///Users/sam/Desktop/studentAssistant/studentAssistant/studentAssistant/section/%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF/ASActiveDynamicViewController.m"
-                  timestampString = "446523877.135054"
+                  timestampString = "446635659.985833"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "96"
                   endingLineNumber = "96"
-                  offsetFromSymbolStart = "258">
+                  offsetFromSymbolStart = "324">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -161,12 +161,12 @@
                   symbolName = "__48-[ASActiveDynamicViewController addRefreshViews]_block_invoke"
                   moduleName = "studentAssistant"
                   urlString = "file:///Users/sam/Desktop/studentAssistant/studentAssistant/studentAssistant/section/%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF/ASActiveDynamicViewController.m"
-                  timestampString = "446523877.135306"
+                  timestampString = "446635659.985986"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "96"
                   endingLineNumber = "96"
-                  offsetFromSymbolStart = "39">
+                  offsetFromSymbolStart = "26">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -225,13 +225,93 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "studentAssistant/Helpers/MenuPopover/MLKMenuPopover.m"
-            timestampString = "446525268.33172"
+            filePath = "studentAssistant/General/EMSearchDisplayController/EMSearchDisplayController.m"
+            timestampString = "446635988.17234"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "-tableView:numberOfRowsInSection:"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "studentAssistant/General/EMSearchDisplayController/EMSearchDisplayController.m"
+            timestampString = "446635988.17234"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "-tableView:didDeselectRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "studentAssistant/General/EMSearchDisplayController/EMSearchDisplayController.m"
+            timestampString = "446635988.17234"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "-tableView:heightForRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "studentAssistant/General/EMSearchDisplayController/EMSearchDisplayController.m"
+            timestampString = "446635988.17234"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "-tableView:canEditRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "studentAssistant/General/EMSearchDisplayController/EMSearchDisplayController.m"
+            timestampString = "446635988.17234"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "-tableView:canEditRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "studentAssistant/General/EMSearchDisplayController/EMSearchDisplayController.m"
+            timestampString = "446635988.17234"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

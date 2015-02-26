@@ -8,7 +8,7 @@
 
 #import "ClassAddressViewController.h"
 #import "UITableView+tableViewExtraCellHidden.h"
-#import "UISearchBar+ChatSearchBar.h"
+#import "EMSearchBar.h"
 #import "DataSearchViewController.h"
 #import "JSONKit.h"
 #import "Bank.h"
@@ -43,11 +43,9 @@
     
 
     
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame: CGRectMake(0.0f, 0.0f, ScreenWidth, 40.0f)];
+    EMSearchBar *searchBar = [[EMSearchBar alloc] initWithFrame: CGRectMake(0.0f, 0.0f, ScreenWidth, 40.0f)];
     searchBar.placeholder = @"搜索";
     searchBar.delegate = self;
-    
-    [searchBar searchBarUICustom];//seacrchBar样式
     [self.view addSubview:searchBar];
     
     self.address_tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - 55) style:UITableViewStylePlain];

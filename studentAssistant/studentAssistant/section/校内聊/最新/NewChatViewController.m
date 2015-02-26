@@ -7,7 +7,7 @@
 //
 
 #import "NewChatViewController.h"
-#import "UISearchBar+ChatSearchBar.h"
+//#import "EMSearchBar.h"
 #import "ChatViewController.h"
 @interface NewChatViewController ()<UISearchBarDelegate>
 
