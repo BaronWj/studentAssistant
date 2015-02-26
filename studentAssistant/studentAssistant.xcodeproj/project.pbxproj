@@ -322,6 +322,10 @@
 		3FEA3F371A80988E00FA0D9C /* MyPieElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FEA3F2E1A80988E00FA0D9C /* MyPieElement.m */; };
 		3FEA3F381A80988E00FA0D9C /* sectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FEA3F2F1A80988E00FA0D9C /* sectorView.xib */; };
 		3FEA3F3B1A80CF2200FA0D9C /* focusNewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FEA3F3A1A80CF2200FA0D9C /* focusNewModel.m */; };
+		3FEC91221A9D6AAF001A5AE3 /* Menu_PopOver_BG.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FEC91201A9D6AAF001A5AE3 /* Menu_PopOver_BG.png */; };
+		3FEC91231A9D6AAF001A5AE3 /* Menu_PopOver_BG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FEC91211A9D6AAF001A5AE3 /* Menu_PopOver_BG@2x.png */; };
+		3FEC91261A9D7E04001A5AE3 /* options_pointer.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FEC91241A9D7E04001A5AE3 /* options_pointer.png */; };
+		3FEC91271A9D7E04001A5AE3 /* options_pointer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FEC91251A9D7E04001A5AE3 /* options_pointer@2x.png */; };
 		3FF9D3B11A6CF19100DD5D38 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9D3B01A6CF19100DD5D38 /* main.m */; };
 		3FF9D3B41A6CF19100DD5D38 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9D3B31A6CF19100DD5D38 /* AppDelegate.m */; };
 		3FF9D3B71A6CF19100DD5D38 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9D3B61A6CF19100DD5D38 /* ViewController.m */; };
@@ -842,6 +846,10 @@
 		3FEA3F2F1A80988E00FA0D9C /* sectorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = sectorView.xib; sourceTree = "<group>"; };
 		3FEA3F391A80CF2200FA0D9C /* focusNewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = focusNewModel.h; sourceTree = "<group>"; };
 		3FEA3F3A1A80CF2200FA0D9C /* focusNewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = focusNewModel.m; sourceTree = "<group>"; };
+		3FEC91201A9D6AAF001A5AE3 /* Menu_PopOver_BG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Menu_PopOver_BG.png; sourceTree = "<group>"; };
+		3FEC91211A9D6AAF001A5AE3 /* Menu_PopOver_BG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Menu_PopOver_BG@2x.png"; sourceTree = "<group>"; };
+		3FEC91241A9D7E04001A5AE3 /* options_pointer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = options_pointer.png; sourceTree = "<group>"; };
+		3FEC91251A9D7E04001A5AE3 /* options_pointer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "options_pointer@2x.png"; sourceTree = "<group>"; };
 		3FF9D3AB1A6CF19100DD5D38 /* studentAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = studentAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FF9D3AF1A6CF19100DD5D38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FF9D3B01A6CF19100DD5D38 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1703,6 +1711,10 @@
 		3FF9D5161A6D007300DD5D38 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3FEC91201A9D6AAF001A5AE3 /* Menu_PopOver_BG.png */,
+				3FEC91211A9D6AAF001A5AE3 /* Menu_PopOver_BG@2x.png */,
+				3FEC91241A9D7E04001A5AE3 /* options_pointer.png */,
+				3FEC91251A9D7E04001A5AE3 /* options_pointer@2x.png */,
 				3FEA3EF11A807D0600FA0D9C /* Vector-Smart-Object.png */,
 				3FDD55AA1A81ACF800DF3A72 /* defaultFocus.png */,
 				3FEA3EF21A807D0600FA0D9C /* Vector-Smart-Object@2x.png */,
@@ -2194,6 +2206,7 @@
 				3F60AACB1A7F21790063CCA3 /* ChooseShcoolViewController.xib in Resources */,
 				3F60ABC31A7F6CB60063CCA3 /* evaluation@2x.png in Resources */,
 				3F60ACC31A7F80340063CCA3 /* video@2x.png in Resources */,
+				3FEC91221A9D6AAF001A5AE3 /* Menu_PopOver_BG.png in Resources */,
 				3FEA3EF91A807EE800FA0D9C /* EvaluateViewController.xib in Resources */,
 				3FEA3F181A80979F00FA0D9C /* icon57.png in Resources */,
 				3F60AC8C1A7F79340063CCA3 /* chat_animation_white3.png in Resources */,
@@ -2250,6 +2263,7 @@
 				3F60AAA11A7F1BF30063CCA3 /* news@2x.png in Resources */,
 				3F60AB951A7F69490063CCA3 /* CurriculumTableViewController.xib in Resources */,
 				3F60ABC11A7F6CB60063CCA3 /* results@2x.png in Resources */,
+				3FEC91271A9D7E04001A5AE3 /* options_pointer@2x.png in Resources */,
 				3F60ABB91A7F6CB60063CCA3 /* attendance@2x.png in Resources */,
 				3F60ABBA1A7F6CB60063CCA3 /* elective.png in Resources */,
 				3FD7220A1A8B4169008ACC87 /* ElectiveInfoViewController.xib in Resources */,
@@ -2285,6 +2299,7 @@
 				3F60AACD1A7F21790063CCA3 /* ForgetViewController.xib in Resources */,
 				3F60AC6F1A7F79340063CCA3 /* fw_r2_c2@2x.png in Resources */,
 				3F60AB681A7F68A60063CCA3 /* educationTeachingCell.xib in Resources */,
+				3FEC91231A9D6AAF001A5AE3 /* Menu_PopOver_BG@2x.png in Resources */,
 				3F60AB931A7F69490063CCA3 /* CourseInfoViewController.xib in Resources */,
 				3F60AB581A7F58C70063CCA3 /* updatePassWord.png in Resources */,
 				3F60AAA91A7F1C930063CCA3 /* studySelected@2x.png in Resources */,
@@ -2303,6 +2318,7 @@
 				3F60AC6C1A7F79340063CCA3 /* 2.png in Resources */,
 				3F60AC5E1A7F79340063CCA3 /* banks.txt in Resources */,
 				3FEA3F041A808E2200FA0D9C /* AttendanceViewController.xib in Resources */,
+				3FEC91261A9D7E04001A5AE3 /* options_pointer.png in Resources */,
 				3F60AC8D1A7F79340063CCA3 /* chat_ipunt_message.png in Resources */,
 				3FEA3EF41A807D0600FA0D9C /* Vector-Smart-Object@2x.png in Resources */,
 				3FF9D6BD1A6D050000DD5D38 /* image0.png in Resources */,

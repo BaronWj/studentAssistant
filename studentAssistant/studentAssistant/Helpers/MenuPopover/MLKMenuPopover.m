@@ -10,7 +10,7 @@
 #import "defineSetting.h"
 //#define RGBA(a, b, c, d) [UIColor colorWithRed:(a / 255.0f) green:(b / 255.0f) blue:(c / 255.0f) alpha:d]
 
-#define MENU_ITEM_HEIGHT        44
+#define MENU_ITEM_HEIGHT        28
 #define FONT_SIZE               15
 #define CELL_IDENTIGIER         @"MenuPopoverCell"
 #define MENU_TABLE_VIEW_FRAME   CGRectMake(0, 0, frame.size.width, frame.size.height)
@@ -66,10 +66,7 @@
         menuPointerView.image = [UIImage imageNamed:@"options_pointer"];
         menuPointerView.tag = MENU_POINTER_TAG;
         [self.containerButton addSubview:menuPointerView];
-////        [menuPointerView.layer setMasksToBounds:YES];
-////        [menuPointerView.layer setCornerRadius:5];
-//        [menuPointerView.layer setBorderWidth:0.5];
-//        [menuPointerView.layer setBorderColor:[UIColor whiteColor].CGColor];
+
         
         // Adding menu Items table
         UITableView *menuItemsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 11, frame.size.width, frame.size.height)];
@@ -77,12 +74,12 @@
         menuItemsTableView.delegate = self;
         menuItemsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         menuItemsTableView.scrollEnabled = NO;
-        menuItemsTableView.backgroundColor = [UIColor clearColor];
+        menuItemsTableView.backgroundColor = [UIColor blackColor];
         menuItemsTableView.tag = MENU_TABLE_VIEW_TAG;
         [menuItemsTableView.layer setMasksToBounds:YES];
         [menuItemsTableView.layer setCornerRadius:5];
-//        [menuItemsTableView.layer setBorderWidth:0.5];
-//        [menuItemsTableView.layer setBorderColor:[UIColor whiteColor].CGColor];
+        [menuItemsTableView.layer setBorderWidth:0.5];
+        [menuItemsTableView.layer setBorderColor:[UIColor blackColor].CGColor];
 
         
         UIImageView *bgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Menu_PopOver_BG"]];
@@ -122,9 +119,9 @@
         cell.imageView.image = [UIImage imageNamed:[_images_array objectAtIndex:indexPath.row]];
         cell.imageView.frame = CGRectMake(0, 0, 30, 30);
         [cell.textLabel setFont:[UIFont boldSystemFontOfSize:FONT_SIZE]];
-        [cell.textLabel setTextColor:[UIColor whiteColor]];
+        [cell.textLabel setTextColor:[UIColor grayColor]];
+        cell.textLabel.text = [self.menuItems objectAtIndex:indexPath.row];
         [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
-        [cell tableViewCellBackbround];
     }
     
     NSInteger numberOfRows = [tableView numberOfRowsInSection:indexPath.section];
@@ -136,6 +133,11 @@
     cell.textLabel.text = [self.menuItems objectAtIndex:indexPath.row];
     
     return cell;
+}
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    cell.backgroundColor = [UIColor clearColor];
+
+
 }
 
 #pragma mark -

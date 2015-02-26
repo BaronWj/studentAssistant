@@ -37,8 +37,9 @@
     UIBarButtonItem * buttonItem = [[UIBarButtonItem alloc] initWithCustomView:_rightButton];
     self.navigationItem.rightBarButtonItem = buttonItem;
     [_rightButton addTarget:self action:@selector(showMenu:) forControlEvents:UIControlEventTouchUpInside];
-    self.menuItems = [NSArray arrayWithObjects:@"添加好友", @"建立群组", nil];
-    self.imageArray = [NSArray arrayWithObjects:@"添加好友", @"建立群组", nil];
+    self.menuItems = [NSArray arrayWithObjects:@"添加好友", @"发起群聊",@"聊天设置", nil];
+    self.imageArray = [NSArray arrayWithObjects:@"添加好友", @"发起群聊",@"聊天设置", nil];
+    
     _schoolChat_scro= [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - 44-40-35 )];
     _schoolChat_scro.backgroundColor =backGround;
     _schoolChat_scro.pagingEnabled = YES;

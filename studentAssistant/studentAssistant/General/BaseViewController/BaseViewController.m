@@ -57,8 +57,8 @@
     [self.navigationController.navigationBar setBarTintColor:nav_backGround];
 //    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"topNav"] forBarMetrics:UIBarMetricsDefault];
 //    [self.navigationController.navigationBar.layer setMasksToBounds:YES];       // 剪切掉多余的背景
-    self.navigationController.navigationBar.titleTextAttributes = @{UITextAttributeTextColor: [UIColor whiteColor],
-                                                                    UITextAttributeFont : [UIFont boldSystemFontOfSize:18]};
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],
+                                                                    NSFontAttributeName : [UIFont fontWithName:@ "HelveticaNeue-CondensedBlack" size:20.0]};
 //    self.navigationController.navigationBar
 //    UIView * titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 40)];
 //    _titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
